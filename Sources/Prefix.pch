@@ -1,0 +1,21 @@
+
+#define AppInit lklauq
+
+#define TEST
+#ifndef DEBUG
+#define NSUtil uxb
+
+#define _MSHookFunction _mhfs
+#define _MSHookMessageEx _hex8
+#endif
+
+#ifdef __OBJC__
+
+#ifdef __cplusplus
+//#define _LOG_TO_FILE
+#import "NSUtil.h"
+#endif
+
+#import <UIKit/UIKit.h>
+
+#endif
