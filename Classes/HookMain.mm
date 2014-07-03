@@ -27,14 +27,15 @@ void LogData(const void *data, size_t dataLength, void *returnAddress)
 	
 	Dl_info info = {0};
 	dladdr(returnAddress, &info);
-	
+
+	BOOL txt = !memcmp(data, "GET ", 4) || !memcmp(data, "POST ", 5);
 	NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, [NSThread callStackSymbols]];
-	NSLog(@"HTTPEEK REQUEST: %@", str);
+	NSLog(@"HTTPEEK DATA: %@", str);
 	
 	NSMutableData *dat = [NSMutableData dataWithData:[str dataUsingEncoding:NSUTF8StringEncoding]];
 	[dat appendBytes:data length:dataLength];
+	if (txt) NSLog(@"%@", [[NSString alloc] initWithBytesNoCopy:(void *)data length:dataLength encoding:NSUTF8StringEncoding freeWhenDone:NO]);
 	
-	BOOL txt = !memcmp(data, "GET ", 4) || !memcmp(data, "POST ", 5);
 	NSString *file = [NSString stringWithFormat:@"%@/DATA.%03d.%@", _logDir, s_index++, txt ? @"txt" : @"dat"];
 	[dat writeToFile:file atomically:NO];
 }
