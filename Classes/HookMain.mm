@@ -11,6 +11,35 @@ FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result) = NUL
 #import <algorithm>
 
 //
+void LogData(const void *data, size_t dataLength, void *returnAddress)
+{
+	if (data == nil || dataLength == 0) return;
+	
+	static int s_index = 0;
+	static NSString *_logDir = nil;
+	static std::vector<NSURLRequest *> _requests;
+	
+	if (_logDir == nil)
+	{
+		_logDir = [[NSString alloc] initWithFormat:@"/tmp/%@.req", NSProcessInfo.processInfo.processName];
+		[[NSFileManager defaultManager] createDirectoryAtPath:_logDir withIntermediateDirectories:YES attributes:nil error:nil];
+	}
+	
+	Dl_info info = {0};
+	dladdr(returnAddress, &info);
+	
+	NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, [NSThread callStackSymbols]];
+	NSLog(@"HTTPEEK REQUEST: %@", str);
+	
+	NSMutableData *dat = [NSMutableData dataWithData:[str dataUsingEncoding:NSUTF8StringEncoding]];
+	[dat appendBytes:data length:dataLength];
+	
+	BOOL txt = !memcmp(data, "GET ", 4) || !memcmp(data, "POST ", 5);
+	NSString *file = [NSString stringWithFormat:@"%@/DATA.%03d.%@", _logDir, s_index++, txt ? @"txt" : @"dat"];
+	[dat writeToFile:file atomically:NO];
+}
+
+//
 void LogRequest(NSURLRequest *request, void *returnAddress)
 {
 	static int s_index = 0;
@@ -39,7 +68,7 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 			NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n%@: %@\n%@\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, [NSThread callStackSymbols], request.HTTPMethod, request.URL.absoluteString, request.allHTTPHeaderFields ? request.allHTTPHeaderFields : @""];
 			NSLog(@"HTTPEEK REQUEST: %@", str);
 			
-			NSString *file = [NSString stringWithFormat:@"%@/%d=%@.txt", _logDir, s_index++, NSUtil::UrlPath([request.URL.host stringByAppendingString:request.URL.path])];
+			NSString *file = [NSString stringWithFormat:@"%@/%03d=%@.txt", _logDir, s_index++, NSUtil::UrlPath([request.URL.host stringByAppendingString:request.URL.path])];
 			if (request.HTTPBody.length && request.HTTPBody.length < 10240)
 			{
 				NSString *str2 = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
@@ -58,6 +87,7 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 }
 
 //
+void SSLPeekInit(NSString *processName);
 void WebViewPeekInit(NSString *processName);
 void ConnectionPeekInit(NSString *processName);
 void ReadStreamPeekInit(NSString *processName);
@@ -73,7 +103,8 @@ extern "C" void AppInit()
 		_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
 		
 		NSLog(@"HTTPEEK new process %@ MSHookFunction=%p, MSHookMessageEx=%p", processName, _MSHookFunction, _MSHookMessageEx);
-				
+		
+		SSLPeekInit(processName);
 		WebViewPeekInit(processName);
 		ConnectionPeekInit(processName);
 		ReadStreamPeekInit(processName);

@@ -30,6 +30,9 @@
 extern FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result);
 extern FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result);
 
+void LogData(const void *data, size_t dataLength, void *returnAddress);
+#define _LogData(data, dataLength) LogData(data, dataLength, __builtin_return_address(0))
+
 //
 void LogRequest(NSURLRequest *request, void *returnAddress);
 #define _LogRequest(request) LogRequest(request, __builtin_return_address(0))
