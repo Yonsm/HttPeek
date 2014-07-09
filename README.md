@@ -6,10 +6,11 @@ iOS HTTP/SSL/URL Peeker
 
 ###功能###
 
+<http://yonsm.net/httpeek/>
 
 ##下载##
 
-Ref Release
+<https://github.com/Yonsm/HttPeek/raw/master/Release/HttPeek.dylib>
 
 ###历史###
 
