@@ -4,19 +4,19 @@ HttPeek
 
 iOS HTTP/SSL/URL Peeker
 
-###Introduce###
+#Introduce
 
 <http://yonsm.net/httpeek/>
 
-#Download##
+#Download
 
 <https://github.com/Yonsm/HttPeek/raw/master/Release/HttPeek.dylib>
 
-###History###
+#History
 
 TBD...
 
-###How to monitor AppStore's traffic?###
+#How to track AppStore's traffic?
 
 1. Install OpenSSH from Cydia;
 2. Install adv-cmds from Cydia;
