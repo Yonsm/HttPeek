@@ -5,7 +5,6 @@
 FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result) = NULL;
 FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result) = NULL;
 
-
 //
 #import <vector>
 #import <algorithm>
@@ -93,6 +92,7 @@ void WebViewPeekInit(NSString *processName);
 void ConnectionPeekInit(NSString *processName);
 void ReadStreamPeekInit(NSString *processName);
 void ApplicationPeekInit(NSString *processName);
+void NotificationPeekInit(NSString *processName);
 
 //
 extern "C" void AppInit()
@@ -110,6 +110,7 @@ extern "C" void AppInit()
 		ConnectionPeekInit(processName);
 		ReadStreamPeekInit(processName);
 		ApplicationPeekInit(processName);
+		NotificationPeekInit(processName);
 		
 		return;
 	}
