@@ -7,36 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24666FDA1963F0CB00E4FE40 /* SSLPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24666FD91963F0CB00E4FE40 /* SSLPeek.mm */; };
-		24A1DEBD160230960039139C /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 24A1DEA4160230960039139C /* Prefix.pch */; };
-		24A1DEC0160230960039139C /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 24A1DEA9160230960039139C /* NSUtil.h */; };
-		24A1DEC1160230960039139C /* NSUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24A1DEAA160230960039139C /* NSUtil.mm */; };
-		24AE2F521972DC55008C2F5A /* NotificationPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24AE2F511972DC55008C2F5A /* NotificationPeek.mm */; };
+		241E96201A6F4EA800AA3BD0 /* ApplicationPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96131A6F4EA800AA3BD0 /* ApplicationPeek.mm */; };
+		241E96211A6F4EA800AA3BD0 /* ConnectionPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.mm */; };
+		241E96241A6F4EA800AA3BD0 /* Main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96171A6F4EA800AA3BD0 /* Main.mm */; };
+		241E96251A6F4EA800AA3BD0 /* NotificationPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96181A6F4EA800AA3BD0 /* NotificationPeek.mm */; };
+		241E96261A6F4EA800AA3BD0 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 241E96191A6F4EA800AA3BD0 /* Prefix.pch */; };
+		241E96271A6F4EA800AA3BD0 /* ReadStreamPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.mm */; };
+		241E96281A6F4EA800AA3BD0 /* SSLPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E961B1A6F4EA800AA3BD0 /* SSLPeek.mm */; };
+		241E96291A6F4EA800AA3BD0 /* WebViewPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E961C1A6F4EA800AA3BD0 /* WebViewPeek.mm */; };
+		241E962A1A6F4EA800AA3BD0 /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961E1A6F4EA800AA3BD0 /* Macro.h */; };
+		241E962B1A6F4EA800AA3BD0 /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961F1A6F4EA800AA3BD0 /* NSUtil.h */; };
 		24C1807615104BF100951174 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C1807515104BF100951174 /* UIKit.framework */; };
 		24CADA911510492B00B22162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CADA901510492B00B22162 /* Foundation.framework */; };
-		24EFFDBE1611203D000C0CD9 /* HookMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 24EFFDBA1611203D000C0CD9 /* HookMain.h */; };
-		24EFFDBF1611203D000C0CD9 /* HookMain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24EFFDBB1611203D000C0CD9 /* HookMain.mm */; };
-		24F3F68E178E9D9D007F8F30 /* ApplicationPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F68B178E9D9D007F8F30 /* ApplicationPeek.mm */; };
-		24F3F68F178E9D9D007F8F30 /* ConnectionPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F68C178E9D9D007F8F30 /* ConnectionPeek.mm */; };
-		24F3F690178E9D9D007F8F30 /* WebViewPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F68D178E9D9D007F8F30 /* WebViewPeek.mm */; };
-		24F3F692178E9F1C007F8F30 /* ReadStreamPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24F3F691178E9F1C007F8F30 /* ReadStreamPeek.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		24666FD91963F0CB00E4FE40 /* SSLPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SSLPeek.mm; sourceTree = "<group>"; };
-		24A1DEA4160230960039139C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		24A1DEA9160230960039139C /* NSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUtil.h; sourceTree = "<group>"; };
-		24A1DEAA160230960039139C /* NSUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSUtil.mm; sourceTree = "<group>"; };
-		24AE2F511972DC55008C2F5A /* NotificationPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NotificationPeek.mm; sourceTree = "<group>"; };
+		241E96131A6F4EA800AA3BD0 /* ApplicationPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplicationPeek.mm; sourceTree = "<group>"; };
+		241E96141A6F4EA800AA3BD0 /* ConnectionPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConnectionPeek.mm; sourceTree = "<group>"; };
+		241E96171A6F4EA800AA3BD0 /* Main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Main.mm; sourceTree = "<group>"; };
+		241E96181A6F4EA800AA3BD0 /* NotificationPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NotificationPeek.mm; sourceTree = "<group>"; };
+		241E96191A6F4EA800AA3BD0 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ReadStreamPeek.mm; sourceTree = "<group>"; };
+		241E961B1A6F4EA800AA3BD0 /* SSLPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SSLPeek.mm; sourceTree = "<group>"; };
+		241E961C1A6F4EA800AA3BD0 /* WebViewPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WebViewPeek.mm; sourceTree = "<group>"; };
+		241E961E1A6F4EA800AA3BD0 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		241E961F1A6F4EA800AA3BD0 /* NSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUtil.h; sourceTree = "<group>"; };
 		24C1807515104BF100951174 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24CADA8D1510492B00B22162 /* HttPeek.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = HttPeek.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CADA901510492B00B22162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		24EFFDBA1611203D000C0CD9 /* HookMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HookMain.h; sourceTree = "<group>"; };
-		24EFFDBB1611203D000C0CD9 /* HookMain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HookMain.mm; sourceTree = "<group>"; };
-		24F3F68B178E9D9D007F8F30 /* ApplicationPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplicationPeek.mm; sourceTree = "<group>"; };
-		24F3F68C178E9D9D007F8F30 /* ConnectionPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConnectionPeek.mm; sourceTree = "<group>"; };
-		24F3F68D178E9D9D007F8F30 /* WebViewPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WebViewPeek.mm; sourceTree = "<group>"; };
-		24F3F691178E9F1C007F8F30 /* ReadStreamPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ReadStreamPeek.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,44 +50,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24A1DE9A160230960039139C /* Classes */ = {
+		241E96121A6F4EA800AA3BD0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				24EFFDBA1611203D000C0CD9 /* HookMain.h */,
-				24EFFDBB1611203D000C0CD9 /* HookMain.mm */,
-				24666FD91963F0CB00E4FE40 /* SSLPeek.mm */,
-				24F3F68B178E9D9D007F8F30 /* ApplicationPeek.mm */,
-				24AE2F511972DC55008C2F5A /* NotificationPeek.mm */,
-				24F3F68C178E9D9D007F8F30 /* ConnectionPeek.mm */,
-				24F3F691178E9F1C007F8F30 /* ReadStreamPeek.mm */,
-				24F3F68D178E9D9D007F8F30 /* WebViewPeek.mm */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		24A1DEA3160230960039139C /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				24A1DEA4160230960039139C /* Prefix.pch */,
-				24A1DEA8160230960039139C /* Util */,
+				241E96191A6F4EA800AA3BD0 /* Prefix.pch */,
+				241E96171A6F4EA800AA3BD0 /* Main.mm */,
+				241E961B1A6F4EA800AA3BD0 /* SSLPeek.mm */,
+				241E961C1A6F4EA800AA3BD0 /* WebViewPeek.mm */,
+				241E96131A6F4EA800AA3BD0 /* ApplicationPeek.mm */,
+				241E96141A6F4EA800AA3BD0 /* ConnectionPeek.mm */,
+				241E96181A6F4EA800AA3BD0 /* NotificationPeek.mm */,
+				241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.mm */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		24A1DEA8160230960039139C /* Util */ = {
+		241E961D1A6F4EA800AA3BD0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				24A1DEA9160230960039139C /* NSUtil.h */,
-				24A1DEAA160230960039139C /* NSUtil.mm */,
+				241E961E1A6F4EA800AA3BD0 /* Macro.h */,
+				241E961F1A6F4EA800AA3BD0 /* NSUtil.h */,
 			);
-			path = Util;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		24CADA821510492B00B22162 = {
 			isa = PBXGroup;
 			children = (
-				24A1DE9A160230960039139C /* Classes */,
-				24A1DEA3160230960039139C /* Sources */,
+				241E96121A6F4EA800AA3BD0 /* Sources */,
+				241E961D1A6F4EA800AA3BD0 /* Utilities */,
 				24CADA8F1510492B00B22162 /* Frameworks */,
 				24CADA8E1510492B00B22162 /* Products */,
 			);
@@ -119,9 +108,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24A1DEBD160230960039139C /* Prefix.pch in Headers */,
-				24A1DEC0160230960039139C /* NSUtil.h in Headers */,
-				24EFFDBE1611203D000C0CD9 /* HookMain.h in Headers */,
+				241E962A1A6F4EA800AA3BD0 /* Macro.h in Headers */,
+				241E962B1A6F4EA800AA3BD0 /* NSUtil.h in Headers */,
+				241E96261A6F4EA800AA3BD0 /* Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,14 +164,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24A1DEC1160230960039139C /* NSUtil.mm in Sources */,
-				24EFFDBF1611203D000C0CD9 /* HookMain.mm in Sources */,
-				24F3F68E178E9D9D007F8F30 /* ApplicationPeek.mm in Sources */,
-				24F3F68F178E9D9D007F8F30 /* ConnectionPeek.mm in Sources */,
-				24F3F690178E9D9D007F8F30 /* WebViewPeek.mm in Sources */,
-				24F3F692178E9F1C007F8F30 /* ReadStreamPeek.mm in Sources */,
-				24666FDA1963F0CB00E4FE40 /* SSLPeek.mm in Sources */,
-				24AE2F521972DC55008C2F5A /* NotificationPeek.mm in Sources */,
+				241E96271A6F4EA800AA3BD0 /* ReadStreamPeek.mm in Sources */,
+				241E96211A6F4EA800AA3BD0 /* ConnectionPeek.mm in Sources */,
+				241E96241A6F4EA800AA3BD0 /* Main.mm in Sources */,
+				241E96291A6F4EA800AA3BD0 /* WebViewPeek.mm in Sources */,
+				241E96201A6F4EA800AA3BD0 /* ApplicationPeek.mm in Sources */,
+				241E96251A6F4EA800AA3BD0 /* NotificationPeek.mm in Sources */,
+				241E96281A6F4EA800AA3BD0 /* SSLPeek.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,7 +180,6 @@
 		24CADA981510492B00B22162 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -210,7 +197,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INIT_ROUTINE = _lklauq;
+				INIT_ROUTINE = _main;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MACH_O_TYPE = mh_dylib;
 				ONLY_ACTIVE_ARCH = YES;
@@ -222,7 +209,6 @@
 		24CADA991510492B00B22162 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -235,7 +221,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INIT_ROUTINE = _lklauq;
+				INIT_ROUTINE = _main;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = HttPeek;

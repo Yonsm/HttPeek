@@ -1,6 +1,4 @@
 
-#import "HookMain.h"
-
 //
 FUNHOOK(void, CFNotificationCenterPostNotification,
 		CFNotificationCenterRef center,

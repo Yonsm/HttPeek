@@ -1,6 +1,4 @@
 
-#import "HookMain.h"
-
 //
 FUNHOOK(OSStatus, SSLRead, SSLContextRef context, void *data, size_t dataLength, size_t *processed)
 {

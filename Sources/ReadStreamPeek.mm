@@ -1,6 +1,4 @@
 
-#import "HookMain.h"
-
 //
 FUNHOOK(CFReadStreamRef, CFReadStreamCreateForHTTPRequest, CFAllocatorRef alloc, CFHTTPMessageRef request)
 {

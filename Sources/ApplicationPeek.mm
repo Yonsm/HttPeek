@@ -1,5 +1,4 @@
 
-#import "HookMain.h"
 
 //
 MSGHOOK(BOOL, UIApplication_openURL, NSURL *URL)

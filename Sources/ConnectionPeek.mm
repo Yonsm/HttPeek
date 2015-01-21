@@ -1,5 +1,4 @@
 
-#import "HookMain.h"
 
 //
 MSGHOOK(id, NSURLConnection_initWithRequest, NSURLRequest *request, id delegate)
@@ -14,10 +13,10 @@ MSGHOOK(NSURLConnection *, NSURLConnection_connectionWithRequest, NSURLRequest *
 {
 	_Log(@"NSURLConnection_connectionWithRequest: %@ <%@>", self, request);
 	_LogRequest(request);
-	_LineLog();
+	_LogLine();
 	NSURLConnection *ret = _NSURLConnection_connectionWithRequest(self, sel, request, outRequest);
 	if (outRequest) _LogRequest(*outRequest);
-	_LineLog();
+	_LogLine();
 	return ret;
 } ENDHOOK
 

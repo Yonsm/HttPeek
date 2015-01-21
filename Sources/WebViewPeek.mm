@@ -1,5 +1,4 @@
 
-#import "HookMain.h"
 
 //
 @interface WebViewDelegate : NSObject <UIWebViewDelegate>
