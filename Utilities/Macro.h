@@ -51,7 +51,7 @@ _Pragma("clang diagnostic pop")
 
 // Localized String
 #undef NSLocalizedString
-#if DEBUG
+#ifdef DEBUG
 #define NSLocalizedString(key, comment) [[NSBundle mainBundle] localizedStringForKey:(key) value:(comment) table:nil]
 #else
 #define NSLocalizedString(key, comment) [[NSBundle mainBundle] localizedStringForKey:(key) value:(key) table:nil]
