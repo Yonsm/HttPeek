@@ -73,7 +73,6 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 				if (str2)
 				{
 					[[str stringByAppendingString:str2] writeToFile:file atomically:NO encoding:NSUTF8StringEncoding error:nil];
-					[str2 release];
 					return;
 				}
 			}
