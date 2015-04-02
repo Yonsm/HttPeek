@@ -183,7 +183,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "scp $CODESIGNING_FOLDER_PATH root@192.168.1.11:/Library/MobileSubstrate/DynamicLibraries/\n#ssh root@tphone \"killall Preferences\"\n";
+			shellScript = "#scp $CODESIGNING_FOLDER_PATH root@192.168.1.11:/Library/MobileSubstrate/DynamicLibraries/\n#ssh root@tphone \"killall Preferences\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
