@@ -1,12 +1,12 @@
 
 //
 HOOK_FUNCTION(void, /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation, CFNotificationCenterPostNotification,
-		CFNotificationCenterRef center,
-		CFStringRef name,
-		const void *object,
-		CFDictionaryRef userInfo,
-		Boolean deliverImmediately
-		)
+			  CFNotificationCenterRef center,
+			  CFStringRef name,
+			  const void *object,
+			  CFDictionaryRef userInfo,
+			  Boolean deliverImmediately
+			  )
 {
 	_Log(@"%s: %@, %@, %@, object: %@, userInfo:%@, deliverImmediately:%d", __FUNCTION__, [NSThread callStackSymbols], center, name, object, userInfo, deliverImmediately);
 	return _CFNotificationCenterPostNotification(center, name, object, userInfo, deliverImmediately);

@@ -13,7 +13,7 @@ WebViewDelegate *_webViewDelegate;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
 {
 	_LogRequest(request);
-	NSLog(@"%@ shouldStartLoadWithRequest: %@, navigationType:%d", __FUNCTION__, webView, [request.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (int)navigationType);
+	NSLog(@"%s: %@, %@, navigationType:%d", __FUNCTION__, webView, [request.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (int)navigationType);
 	id<UIWebViewDelegate> delegate = [_delegates objectForKey:[NSString stringWithFormat:@"%p", webView]];
 	return [delegate respondsToSelector:@selector(webView: shouldStartLoadWithRequest: navigationType:)] ? [delegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType] : YES;
 }
@@ -21,7 +21,7 @@ WebViewDelegate *_webViewDelegate;
 //
 - (void)webViewDidStartLoad:(UIWebView *)webView;
 {
-	NSLog(@"%@ webViewDidStartLoad", __FUNCTION__, webView);
+	NSLog(@"%s: %@", __FUNCTION__, webView);
 	id<UIWebViewDelegate> delegate = [_delegates objectForKey:[NSString stringWithFormat:@"%p", webView]];
 	if ([delegate respondsToSelector:@selector(webViewDidStartLoad:)]) [delegate webViewDidStartLoad:webView];
 }
