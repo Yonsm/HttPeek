@@ -89,7 +89,7 @@ NS_INLINE NSString *NSCachePath()
 NS_INLINE NSString *NSCacheSubPath(NSString *file)
 {
 	NSString *dir = NSCachePath();
-	if ([NSFileManager.defaultManager fileExistsAtPath:dir])
+	if (![NSFileManager.defaultManager fileExistsAtPath:dir])
 	{
 		[NSFileManager.defaultManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
 	}
