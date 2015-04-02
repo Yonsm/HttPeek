@@ -1,5 +1,5 @@
 
-#define HOOK_SECURITY(RET, ...) HOOK_FUNCTION(RET, /System/Library/Frameworks/Security.framework/SecuritySSLRead, __VA_ARGS__)
+#define HOOK_SECURITY(RET, ...) HOOK_FUNCTION(RET, /System/Library/Frameworks/Security.framework/Security, __VA_ARGS__)
 
 //
 HOOK_SECURITY(OSStatus, SSLRead, SSLContextRef context, void *data, size_t dataLength, size_t *processed)

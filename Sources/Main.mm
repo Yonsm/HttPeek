@@ -91,6 +91,6 @@ extern "C"
 #endif
 int main()
 {
-	_Log(@"HTTPEEK new process %@", NSProcessInfo.processInfo.processName);
+	_LogLine();
 	return 0;
 }
