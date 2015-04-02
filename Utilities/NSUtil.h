@@ -81,7 +81,7 @@ NS_INLINE NSString *NSDocumentSubPath(NSString *file)
 //
 NS_INLINE NSString *NSCachePath()
 {
-	//return DocumentPath(@"Cache");
+//	return NSDocumentSubPath(@"Cache");
 	return [NSUserDirectoryPath(NSCachesDirectory) stringByAppendingPathComponent:@"Cache"];
 }
 
@@ -155,7 +155,7 @@ NS_INLINE NSString *NSFormatThousandsAmount(NSString *amount)
 
 	NSMutableString *ret = [NSMutableString stringWithString:amount];
 	NSRange range = [amount rangeOfString:@"."];
-	NSUInteger i = (range.location != NSNotFound) ? range.location : ret.length;
+	NSInteger i = (range.location != NSNotFound) ? range.location : ret.length;
 	for (i -= 3; i > 0; i -= 3)
 	{
 		[ret insertString:@"," atIndex:i];
@@ -213,12 +213,12 @@ NS_INLINE NSString *NSFormatDateBeforeNow(NSDate *date)
 	NSDate *now = NSDate.date;
 	NSTimeInterval t = [now timeIntervalSinceDate:date];
 	if (t < 0) return nil;
-	if (t < 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Seconds Before", @"%d秒前"), (NSUInteger)t];
-	if (t < 60 * 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Minutes Before", @"%d分钟前"), (NSUInteger)(t/60)];
-	if (t < 60 * 60 * 24) return [NSString stringWithFormat:NSLocalizedString(@"%d Hours Before", @"%d小时前"), (NSUInteger)(t/(60 * 60))];
-	if (t < 60 * 60 * 24 * 31) return [NSString stringWithFormat:NSLocalizedString(@"%d Days Before", @"%d天前"), (NSUInteger)(t/(60 * 60 * 24))];
-	if (t < 60 * 60 * 24 * 365) return [NSString stringWithFormat:NSLocalizedString(@"%d Months Before", @"%d个月前"), (NSUInteger)(t/(60 * 60 * 24 * 30))];
-	/*if (t < 60 * 60 * 24 * 365) */return [NSString stringWithFormat:NSLocalizedString(@"%d Years Before", @"%d年前"), (NSUInteger)(t/(60 * 60 * 24 * 365))];
+	if (t < 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Seconds Before", @"%d秒前"), (int)t];
+	if (t < 60 * 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Minutes Before", @"%d分钟前"), (int)(t/60)];
+	if (t < 60 * 60 * 24) return [NSString stringWithFormat:NSLocalizedString(@"%d Hours Before", @"%d小时前"), (int)(t/(60 * 60))];
+	if (t < 60 * 60 * 24 * 31) return [NSString stringWithFormat:NSLocalizedString(@"%d Days Before", @"%d天前"), (int)(t/(60 * 60 * 24))];
+	if (t < 60 * 60 * 24 * 365) return [NSString stringWithFormat:NSLocalizedString(@"%d Months Before", @"%d个月前"), (int)(t/(60 * 60 * 24 * 30))];
+	/*if (t < 60 * 60 * 24 * 365) */return [NSString stringWithFormat:NSLocalizedString(@"%d Years Before", @"%d年前"), (int)(t/(60 * 60 * 24 * 365))];
 	return NSLocalizedString(@"Long Long Before", @"好久好久以前");
 }
 
