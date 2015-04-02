@@ -1,13 +1,12 @@
 
-
-FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result) = NULL;
-FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result) = NULL;
-
 //
 #import <vector>
 #import <algorithm>
 
 //
+#if __cplusplus
+extern "C"
+#endif
 void LogData(const void *data, size_t dataLength, void *returnAddress)
 {
 	if (data == nil || dataLength == 0) return;
@@ -38,6 +37,9 @@ void LogData(const void *data, size_t dataLength, void *returnAddress)
 }
 
 //
+#if __cplusplus
+extern "C"
+#endif
 void LogRequest(NSURLRequest *request, void *returnAddress)
 {
 	static int s_index = 0;
@@ -84,31 +86,11 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 }
 
 //
-void SSLPeekInit(NSString *processName);
-void WebViewPeekInit(NSString *processName);
-void ConnectionPeekInit(NSString *processName);
-void ReadStreamPeekInit(NSString *processName);
-void ApplicationPeekInit(NSString *processName);
-void NotificationPeekInit(NSString *processName);
-
-//
-extern "C" int main()
+#if __cplusplus
+extern "C"
+#endif
+int main()
 {
-	@autoreleasepool
-	{
-		NSString *processName = NSProcessInfo.processInfo.processName;
-		_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookFunction);
-		_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
-
-		NSLog(@"HTTPEEK new process %@ MSHookFunction=%p, MSHookMessageEx=%p", processName, _MSHookFunction, _MSHookMessageEx);
-
-		SSLPeekInit(processName);
-		WebViewPeekInit(processName);
-		ConnectionPeekInit(processName);
-		ReadStreamPeekInit(processName);
-		ApplicationPeekInit(processName);
-		NotificationPeekInit(processName);
-
-		return 0;
-	}
+	_Log(@"HTTPEEK new process %@", NSProcessInfo.processInfo.processName);
+	return 0;
 }

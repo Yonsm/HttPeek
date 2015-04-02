@@ -7,31 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		241E96201A6F4EA800AA3BD0 /* ApplicationPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96131A6F4EA800AA3BD0 /* ApplicationPeek.mm */; };
-		241E96211A6F4EA800AA3BD0 /* ConnectionPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.mm */; };
+		240277F21A885C7400897D2F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240277F11A885C7400897D2F /* Security.framework */; };
 		241E96241A6F4EA800AA3BD0 /* Main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96171A6F4EA800AA3BD0 /* Main.mm */; };
-		241E96251A6F4EA800AA3BD0 /* NotificationPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96181A6F4EA800AA3BD0 /* NotificationPeek.mm */; };
 		241E96261A6F4EA800AA3BD0 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 241E96191A6F4EA800AA3BD0 /* Prefix.pch */; };
-		241E96271A6F4EA800AA3BD0 /* ReadStreamPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.mm */; };
-		241E96281A6F4EA800AA3BD0 /* SSLPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E961B1A6F4EA800AA3BD0 /* SSLPeek.mm */; };
-		241E96291A6F4EA800AA3BD0 /* WebViewPeek.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E961C1A6F4EA800AA3BD0 /* WebViewPeek.mm */; };
 		241E962A1A6F4EA800AA3BD0 /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961E1A6F4EA800AA3BD0 /* Macro.h */; };
 		241E962B1A6F4EA800AA3BD0 /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961F1A6F4EA800AA3BD0 /* NSUtil.h */; };
+		24B6E1DF1ACD729900118275 /* HookUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 24B6E1DD1ACD729900118275 /* HookUtil.h */; };
+		24B6E1E01ACD729900118275 /* HookUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B6E1DE1ACD729900118275 /* HookUtil.m */; };
+		24B6E1E11ACD73CA00118275 /* ApplicationPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96131A6F4EA800AA3BD0 /* ApplicationPeek.m */; };
+		24B6E1E21ACD743900118275 /* SSLPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */; };
+		24B6E1E31ACD75A400118275 /* ReadStreamPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.m */; };
+		24B6E1E41ACD78BF00118275 /* ConnectionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */; };
+		24B6E1E51ACD7B4600118275 /* NotificationPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96181A6F4EA800AA3BD0 /* NotificationPeek.m */; };
+		24B6E1E61ACD7C7D00118275 /* WebViewPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961C1A6F4EA800AA3BD0 /* WebViewPeek.m */; };
 		24C1807615104BF100951174 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C1807515104BF100951174 /* UIKit.framework */; };
 		24CADA911510492B00B22162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CADA901510492B00B22162 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		241E96131A6F4EA800AA3BD0 /* ApplicationPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplicationPeek.mm; sourceTree = "<group>"; };
-		241E96141A6F4EA800AA3BD0 /* ConnectionPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConnectionPeek.mm; sourceTree = "<group>"; };
+		240277F11A885C7400897D2F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		241E96131A6F4EA800AA3BD0 /* ApplicationPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPeek.m; sourceTree = "<group>"; };
+		241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionPeek.m; sourceTree = "<group>"; };
 		241E96171A6F4EA800AA3BD0 /* Main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Main.mm; sourceTree = "<group>"; };
-		241E96181A6F4EA800AA3BD0 /* NotificationPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NotificationPeek.mm; sourceTree = "<group>"; };
+		241E96181A6F4EA800AA3BD0 /* NotificationPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationPeek.m; sourceTree = "<group>"; };
 		241E96191A6F4EA800AA3BD0 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ReadStreamPeek.mm; sourceTree = "<group>"; };
-		241E961B1A6F4EA800AA3BD0 /* SSLPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SSLPeek.mm; sourceTree = "<group>"; };
-		241E961C1A6F4EA800AA3BD0 /* WebViewPeek.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WebViewPeek.mm; sourceTree = "<group>"; };
+		241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadStreamPeek.m; sourceTree = "<group>"; };
+		241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLPeek.m; sourceTree = "<group>"; };
+		241E961C1A6F4EA800AA3BD0 /* WebViewPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewPeek.m; sourceTree = "<group>"; };
 		241E961E1A6F4EA800AA3BD0 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		241E961F1A6F4EA800AA3BD0 /* NSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUtil.h; sourceTree = "<group>"; };
+		24B6E1DD1ACD729900118275 /* HookUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HookUtil.h; sourceTree = "<group>"; };
+		24B6E1DE1ACD729900118275 /* HookUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookUtil.m; sourceTree = "<group>"; };
 		24C1807515104BF100951174 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24CADA8D1510492B00B22162 /* HttPeek.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = HttPeek.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CADA901510492B00B22162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240277F21A885C7400897D2F /* Security.framework in Frameworks */,
 				24C1807615104BF100951174 /* UIKit.framework in Frameworks */,
 				24CADA911510492B00B22162 /* Foundation.framework in Frameworks */,
 			);
@@ -55,12 +62,12 @@
 			children = (
 				241E96191A6F4EA800AA3BD0 /* Prefix.pch */,
 				241E96171A6F4EA800AA3BD0 /* Main.mm */,
-				241E961B1A6F4EA800AA3BD0 /* SSLPeek.mm */,
-				241E961C1A6F4EA800AA3BD0 /* WebViewPeek.mm */,
-				241E96131A6F4EA800AA3BD0 /* ApplicationPeek.mm */,
-				241E96141A6F4EA800AA3BD0 /* ConnectionPeek.mm */,
-				241E96181A6F4EA800AA3BD0 /* NotificationPeek.mm */,
-				241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.mm */,
+				241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */,
+				241E961C1A6F4EA800AA3BD0 /* WebViewPeek.m */,
+				241E96131A6F4EA800AA3BD0 /* ApplicationPeek.m */,
+				241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */,
+				241E96181A6F4EA800AA3BD0 /* NotificationPeek.m */,
+				241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -70,6 +77,8 @@
 			children = (
 				241E961E1A6F4EA800AA3BD0 /* Macro.h */,
 				241E961F1A6F4EA800AA3BD0 /* NSUtil.h */,
+				24B6E1DD1ACD729900118275 /* HookUtil.h */,
+				24B6E1DE1ACD729900118275 /* HookUtil.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -95,6 +104,7 @@
 		24CADA8F1510492B00B22162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				240277F11A885C7400897D2F /* Security.framework */,
 				24C1807515104BF100951174 /* UIKit.framework */,
 				24CADA901510492B00B22162 /* Foundation.framework */,
 			);
@@ -111,6 +121,7 @@
 				241E962A1A6F4EA800AA3BD0 /* Macro.h in Headers */,
 				241E962B1A6F4EA800AA3BD0 /* NSUtil.h in Headers */,
 				241E96261A6F4EA800AA3BD0 /* Prefix.pch in Headers */,
+				24B6E1DF1ACD729900118275 /* HookUtil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +135,7 @@
 				24CADA891510492B00B22162 /* Sources */,
 				24CADA8A1510492B00B22162 /* Frameworks */,
 				24CADA8B1510492B00B22162 /* Headers */,
+				240278591A88D23F00897D2F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -159,18 +171,35 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		240278591A88D23F00897D2F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#scp $CODESIGNING_FOLDER_PATH root@tphone:/Library/MobileSubstrate/DynamicLibraries/\n#ssh root@tphone \"killall Preferences\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		24CADA891510492B00B22162 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241E96271A6F4EA800AA3BD0 /* ReadStreamPeek.mm in Sources */,
-				241E96211A6F4EA800AA3BD0 /* ConnectionPeek.mm in Sources */,
 				241E96241A6F4EA800AA3BD0 /* Main.mm in Sources */,
-				241E96291A6F4EA800AA3BD0 /* WebViewPeek.mm in Sources */,
-				241E96201A6F4EA800AA3BD0 /* ApplicationPeek.mm in Sources */,
-				241E96251A6F4EA800AA3BD0 /* NotificationPeek.mm in Sources */,
-				241E96281A6F4EA800AA3BD0 /* SSLPeek.mm in Sources */,
+				24B6E1E31ACD75A400118275 /* ReadStreamPeek.m in Sources */,
+				24B6E1E51ACD7B4600118275 /* NotificationPeek.m in Sources */,
+				24B6E1E41ACD78BF00118275 /* ConnectionPeek.m in Sources */,
+				24B6E1E61ACD7C7D00118275 /* WebViewPeek.m in Sources */,
+				24B6E1E21ACD743900118275 /* SSLPeek.m in Sources */,
+				24B6E1E11ACD73CA00118275 /* ApplicationPeek.m in Sources */,
+				24B6E1E01ACD729900118275 /* HookUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

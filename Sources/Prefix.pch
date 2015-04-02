@@ -1,10 +1,5 @@
 
-
-#import <mach/mach_host.h>
-#import <objc/runtime.h>
-#import <sys/stat.h>
-#import <dlfcn.h>
-
+#define TEST
 #import "Macro.h"
 
 #ifdef __OBJC__
@@ -12,34 +7,17 @@
 #import "NSUtil.h"
 #endif
 
-//
-#define DLSYM(lib, func)				dlsym(dlopen(k##lib.UTF8String, RTLD_LAZY), k##func.UTF8String)
-#define _DLSYM(lib, func)				dlsym(dlopen(#lib, RTLD_LAZY), #func)	// Without encrypt string
+#import "HookUtil.h"
 
-#define FUNPTR(ret, func, ...)			ret (*_##func)(__VA_ARGS__)
-#define PTRSET(func, val)				*((void **)&_##func) = val
-#define PTRFUN(lib, func)				PTRSET(func, DLSYM(lib, func))
-#define _PTRFUN(lib, func)				PTRSET(func, _DLSYM(lib, func))
-
-//
-#define FUNHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); static ret $##func(__VA_ARGS__) {{/*_Log(@"FUNHOAK %s(%s)", #hook, #__VA_ARGS__);*/
-#define HOOKFUN(lib, func)				_MSHookFunction(DLSYM(lib, func), (void *)$##func, (void **)&_##func)
-#define _HOOKFUN(lib, func)				_MSHookFunction(_DLSYM(lib, func), (void *)$##func, (void **)&_##func)	// Without encrypt string
-#define MSGHOOK(ret, hook, ...)			static ret (*_##hook)(id self, SEL sel, ##__VA_ARGS__); static ret $##hook(id self, SEL sel, ##__VA_ARGS__) {{/*_Log(@"MSG[%@ %@] %s(id self, %s)", NSStringFromClass([self class]), NSStringFromSelector(sel), #hook, #__VA_ARGS__);*/
-#define HOOKMSG(hook, cls, sel)			_MSHookMessageEx(NSClassFromString(k##cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
-#define _HOOKMSG(hook, cls, sel)		_MSHookMessageEx(NSClassFromString(@#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)	// Without encrypt string
-#define HOOKCLS(hook, cls, sel)			_MSHookMessageEx(objc_getMetaClass([k##cls UTF8String]), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
-#define _HOOKCLS(hook, cls, sel)		_MSHookMessageEx(objc_getMetaClass(#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)	// Without encrypt string
-
-#define ENDHOOK							}}
-
-
-extern FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result);
-extern FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result);
-
+#if __cplusplus
+extern "C"
+#endif
 void LogData(const void *data, size_t dataLength, void *returnAddress);
 #define _LogData(data, dataLength) LogData(data, dataLength, __builtin_return_address(0))
 
 //
+#if __cplusplus
+extern "C"
+#endif
 void LogRequest(NSURLRequest *request, void *returnAddress);
 #define _LogRequest(request) LogRequest(request, __builtin_return_address(0))

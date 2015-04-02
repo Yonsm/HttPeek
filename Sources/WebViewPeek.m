@@ -13,7 +13,7 @@ WebViewDelegate *_webViewDelegate;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
 {
 	_LogRequest(request);
-	NSLog(@"%@ shouldStartLoadWithRequest: %@, navigationType:%d", webView, [request.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (int)navigationType);
+	NSLog(@"%@ shouldStartLoadWithRequest: %@, navigationType:%d", __FUNCTION__, webView, [request.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (int)navigationType);
 	id<UIWebViewDelegate> delegate = [_delegates objectForKey:[NSString stringWithFormat:@"%p", webView]];
 	return [delegate respondsToSelector:@selector(webView: shouldStartLoadWithRequest: navigationType:)] ? [delegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType] : YES;
 }
@@ -21,7 +21,7 @@ WebViewDelegate *_webViewDelegate;
 //
 - (void)webViewDidStartLoad:(UIWebView *)webView;
 {
-	NSLog(@"%@ webViewDidStartLoad", webView);
+	NSLog(@"%@ webViewDidStartLoad", __FUNCTION__, webView);
 	id<UIWebViewDelegate> delegate = [_delegates objectForKey:[NSString stringWithFormat:@"%p", webView]];
 	if ([delegate respondsToSelector:@selector(webViewDidStartLoad:)]) [delegate webViewDidStartLoad:webView];
 }
@@ -29,7 +29,7 @@ WebViewDelegate *_webViewDelegate;
 //
 - (void)webViewDidFinishLoad:(UIWebView *)webView;
 {
-	NSLog(@"%@ webViewDidFinishLoad", webView);
+	NSLog(@"%s: %@", __FUNCTION__, webView);
 	id<UIWebViewDelegate> delegate = [_delegates objectForKey:[NSString stringWithFormat:@"%p", webView]];
 	if ([delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) [delegate webViewDidFinishLoad:webView];
 }
@@ -37,7 +37,7 @@ WebViewDelegate *_webViewDelegate;
 //
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
 {
-	NSLog(@"%@ didFailLoadWithError", webView);
+	NSLog(@"%s: %@", __FUNCTION__, webView);
 	id<UIWebViewDelegate> delegate = [_delegates objectForKey:[NSString stringWithFormat:@"%p", webView]];
 	if ([delegate respondsToSelector:@selector(webView: didFailLoadWithError:)]) [delegate webView:webView didFailLoadWithError:error];
 }
@@ -52,38 +52,26 @@ NS_INLINE void LogWebView(UIWebView *webView)
 }
 
 //
-MSGHOOK(void, UIWebView_loadData, NSData * data, NSString *MIMEType, NSString *encodingName, NSURL *baseURL)
+HOOK_MESSAGE(void, UIWebView, loadData_MIMEType_textEncodingName_baseURL_, NSData * data, NSString *MIMEType, NSString *encodingName, NSURL *baseURL)
 {
-	NSLog(@"UIWebView_loadData: %@", baseURL);
+	NSLog(@"%s: %@", __FUNCTION__, baseURL);
 	LogWebView(self);
-	_UIWebView_loadData(self, sel, data, MIMEType, encodingName, baseURL);
-	
-} ENDHOOK
+	_UIWebView_loadData_MIMEType_textEncodingName_baseURL_(self, sel, data, MIMEType, encodingName, baseURL);
+}
 
 //
-MSGHOOK(void, UIWebView_loadHTMLString, NSString *string, NSURL *baseURL)
+HOOK_MESSAGE(void, UIWebView, loadHTMLString_baseURL_, NSString *string, NSURL *baseURL)
 {
-	NSLog(@"UIWebView_loadHTMLString: %@", baseURL);
+	NSLog(@"%s: %@", __FUNCTION__, baseURL);
 	LogWebView(self);
-	_UIWebView_loadHTMLString(self, sel, string, baseURL);
-	
-} ENDHOOK
+	_UIWebView_loadHTMLString_baseURL_(self, sel, string, baseURL);
+
+}
 
 //
-MSGHOOK(void, UIWebView_loadRequest, NSURLRequest *request)
+HOOK_MESSAGE(void, UIWebView, loadRequest_, NSURLRequest *request)
 {
-	NSLog(@"UIWebView_loadRequest: %@", request);
+	NSLog(@"%s: %@", __FUNCTION__, request);
 	LogWebView(self);
-	_UIWebView_loadRequest(self, sel, request);
-} ENDHOOK
-
-//
-void WebViewPeekInit(NSString *processName)
-{
-	_delegates = [[NSMutableDictionary alloc] init];
-	_webViewDelegate = [[WebViewDelegate alloc] init];
-
-	_HOOKMSG(UIWebView_loadData, UIWebView, loadData:MIMEType:textEncodingName:baseURL:);
-	_HOOKMSG(UIWebView_loadHTMLString, UIWebView, loadHTMLString:baseURL:);
-	_HOOKMSG(UIWebView_loadRequest, UIWebView, loadRequest:);
+	_UIWebView_loadRequest_(self, sel, request);
 }
