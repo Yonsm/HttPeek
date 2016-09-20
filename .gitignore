@@ -3,3 +3,5 @@
 *.xcworkspace
 Extras
 
+
+.DS_Store
