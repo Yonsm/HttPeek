@@ -153,6 +153,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					24CADA8C1510492B00B22162 = {
+						DevelopmentTeam = 97Y98KA82X;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 24CADA871510492B00B22162 /* Build configuration list for PBXProject "HttPeek" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -214,8 +220,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				EXECUTABLE_EXTENSION = dylib;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -244,8 +250,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				EXECUTABLE_EXTENSION = dylib;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Sources/Prefix.pch;
@@ -264,12 +270,18 @@
 		24CADA9B1510492B00B22162 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 97Y98KA82X;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cele.httpeek;
 			};
 			name = Debug;
 		};
 		24CADA9C1510492B00B22162 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 97Y98KA82X;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cele.httpeek;
 			};
 			name = Release;
 		};
