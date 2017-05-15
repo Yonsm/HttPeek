@@ -11,6 +11,7 @@ void LogData(const void *data, size_t dataLength, void *returnAddress)
 {
 	if (data == nil || dataLength == 0) return;
 
+    _LogLine();
 	static int s_index = 0;
 	static NSString *_logDir = nil;
 	static std::vector<NSURLRequest *> _requests;

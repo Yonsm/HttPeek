@@ -18,7 +18,6 @@
 		24B6E1F01ACD869600118275 /* WebViewPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961C1A6F4EA800AA3BD0 /* WebViewPeek.m */; };
 		24B6E1F11ACD869600118275 /* ApplicationPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96131A6F4EA800AA3BD0 /* ApplicationPeek.m */; };
 		24B6E1F21ACD869600118275 /* ConnectionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */; };
-		24B6E1F31ACD869600118275 /* NotificationPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96181A6F4EA800AA3BD0 /* NotificationPeek.m */; };
 		24B6E1F41ACD869600118275 /* ReadStreamPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.m */; };
 		24C1807615104BF100951174 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C1807515104BF100951174 /* UIKit.framework */; };
 		24CADA911510492B00B22162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CADA901510492B00B22162 /* Foundation.framework */; };
@@ -199,7 +198,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B6E1F41ACD869600118275 /* ReadStreamPeek.m in Sources */,
-				24B6E1F31ACD869600118275 /* NotificationPeek.m in Sources */,
 				24B6E1EF1ACD869600118275 /* SSLPeek.m in Sources */,
 				24B6E1E81ACD819000118275 /* HookUtil.m in Sources */,
 				24B6E1F01ACD869600118275 /* WebViewPeek.m in Sources */,

@@ -1,4 +1,5 @@
 
+/*
 //
 HOOK_FUNCTION(void, /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation, CFNotificationCenterPostNotification,
 			  CFNotificationCenterRef center,
@@ -46,3 +47,4 @@ HOOK_FUNCTION(void, /System/Library/Frameworks/CoreTelephony.framework/CoreTelep
 	_Log(@"%s: %@", __FUNCTION__, userInfo);
 	return __CTCallHandleUSSDSessionStringNotification(ref, userInfo);
 }
+*/

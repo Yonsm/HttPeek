@@ -30,12 +30,13 @@ void _HookMessage(Class cls, const char *msg, void *hook, void **old)
 {
 	//
 	char name[1024];
-	int i = 0;
+	
+	char *p = name;
 	do
 	{
-		name[i] = (msg[i] == '_') ? ':' : msg[i];
+		*p++ = (*msg == '_') ? ((msg[1] == '_') ? *msg++ : ':') : *msg;
 	}
-	while (msg[i++]);
+	while (*msg++);
 	SEL sel = sel_registerName(name);
 
 	//
