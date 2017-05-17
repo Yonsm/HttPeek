@@ -1,5 +1,6 @@
 
 //
+/*
 HOOK_MESSAGE(void, NSURLSessionTask, resume)
 {
 	NSLog(@"%s: %@", __FUNCTION__, self);
@@ -7,7 +8,8 @@ HOOK_MESSAGE(void, NSURLSessionTask, resume)
 	_NSURLSessionTask_resume(self, sel);
 	_LogRequest([self currentRequest]);
 }
-
+ */
+/*
 HOOK_META(NSURLSession *, NSURLSession2, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
 {
 	NSString* proxyHost = @"192.168.1.3";
@@ -29,7 +31,7 @@ HOOK_META(NSURLSession *, NSURLSession2, sessionWithConfiguration_delegate_deleg
 	
 	return _NSURLSession2_sessionWithConfiguration_delegate_delegateQueue_(self, sel, configuration, delegate, queue);
 }
-
+*/
 
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_, NSURLRequest *request)
@@ -115,9 +117,19 @@ HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, streamTaskWithNetService_, NS
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_completionHandler_, NSURLRequest *request, void (^completionHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))
 {
+	__block void (^completionHandler0)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) = completionHandler;
+	
+	void (^completionHandler2)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) =
+	^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
+	{
+		_LogLine();
+		_LogData(data.bytes, data.length);
+		return completionHandler0(data, response, error);
+	};
+	
 	_LogLine();
 	_LogRequest(request);
-	return _NSURLSession_dataTaskWithRequest_completionHandler_(self, sel, request, completionHandler);
+	return _NSURLSession_dataTaskWithRequest_completionHandler_(self, sel, request, completionHandler2);
 }
 
 //

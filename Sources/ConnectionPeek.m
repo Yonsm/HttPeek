@@ -30,6 +30,7 @@ HOOK_MESSAGE(NSData *, NSURLConnection, sendSynchronousRequest_returningResponse
 }
 
 //
+/*
 HOOK_MESSAGE(void *, NSURLConnection, start)
 {
 	_Log(@"%s: %@", __FUNCTION__, self);
@@ -37,4 +38,4 @@ HOOK_MESSAGE(void *, NSURLConnection, start)
 	void *ret = _NSURLConnection_start(self, sel);
 	_LogRequest([self currentRequest]);
 	return ret;
-}
+}*/

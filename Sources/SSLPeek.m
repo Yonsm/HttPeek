@@ -17,7 +17,7 @@ HOOK_SECURITY(OSStatus, SSLWrite, SSLContextRef context, const void *data, size_
 	return ret;
 }
 
-//
+/*/
 HOOK_SECURITY(OSStatus, SSLSetSessionOption, SSLContextRef context, SSLSessionOption option, Boolean value)
 {
     // Remove the ability to modify the value of the kSSLSessionOptionBreakOnServerAuth option
@@ -43,3 +43,4 @@ HOOK_SECURITY(OSStatus, SSLHandshake, SSLContextRef context)
 	OSStatus ret = _SSLHandshake(context);
     return (ret == errSSLServerAuthCompleted) ? _SSLHandshake(context) : ret;
 }
+*/
