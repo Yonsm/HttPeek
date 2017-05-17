@@ -8,6 +8,29 @@ HOOK_MESSAGE(void, NSURLSessionTask, resume)
 	_LogRequest([self currentRequest]);
 }
 
+HOOK_META(NSURLSession *, NSURLSession2, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
+{
+	NSString* proxyHost = @"192.168.1.3";
+	NSNumber* proxyPort = [NSNumber numberWithInt:8888];
+	
+	// Create an NSURLSessionConfiguration that uses the proxy
+	NSDictionary *proxyDict = @{
+								@"HTTPEnable"  : [NSNumber numberWithInt:1],
+								(NSString *)kCFStreamPropertyHTTPProxyHost  : proxyHost,
+								(NSString *)kCFStreamPropertyHTTPProxyPort  : proxyPort,
+								
+								@"HTTPSEnable" : [NSNumber numberWithInt:1],
+								(NSString *)kCFStreamPropertyHTTPSProxyHost : proxyHost,
+								(NSString *)kCFStreamPropertyHTTPSProxyPort : proxyPort,
+								};
+
+	_LogLine();
+	configuration.connectionProxyDictionary = proxyDict;
+	
+	return _NSURLSession2_sessionWithConfiguration_delegate_delegateQueue_(self, sel, configuration, delegate, queue);
+}
+
+
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_, NSURLRequest *request)
 {

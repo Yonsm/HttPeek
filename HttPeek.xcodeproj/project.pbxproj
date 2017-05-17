@@ -22,6 +22,8 @@
 		24C1807615104BF100951174 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C1807515104BF100951174 /* UIKit.framework */; };
 		24CADA911510492B00B22162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CADA901510492B00B22162 /* Foundation.framework */; };
 		24CECD1F1ECC55A3003B31CD /* SessionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CECD1E1ECC55A3003B31CD /* SessionPeek.m */; };
+		24CECD211ECC633E003B31CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CECD201ECC633E003B31CD /* CoreFoundation.framework */; };
+		24CECD231ECC634C003B31CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CECD221ECC634C003B31CD /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		24CADA8D1510492B00B22162 /* HttPeek.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = HttPeek.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CADA901510492B00B22162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24CECD1E1ECC55A3003B31CD /* SessionPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionPeek.m; sourceTree = "<group>"; };
+		24CECD201ECC633E003B31CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		24CECD221ECC634C003B31CD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,9 +53,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CECD231ECC634C003B31CD /* CFNetwork.framework in Frameworks */,
+				24CECD211ECC633E003B31CD /* CoreFoundation.framework in Frameworks */,
+				24CADA911510492B00B22162 /* Foundation.framework in Frameworks */,
 				240277F21A885C7400897D2F /* Security.framework in Frameworks */,
 				24C1807615104BF100951174 /* UIKit.framework in Frameworks */,
-				24CADA911510492B00B22162 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +112,8 @@
 		24CADA8F1510492B00B22162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24CECD221ECC634C003B31CD /* CFNetwork.framework */,
+				24CECD201ECC633E003B31CD /* CoreFoundation.framework */,
 				240277F11A885C7400897D2F /* Security.framework */,
 				24C1807515104BF100951174 /* UIKit.framework */,
 				24CADA901510492B00B22162 /* Foundation.framework */,
@@ -236,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INIT_ROUTINE = _main;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = HttPeek;
@@ -261,7 +269,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INIT_ROUTINE = _main;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = HttPeek;
 				SDKROOT = iphoneos;

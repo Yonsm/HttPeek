@@ -38,26 +38,36 @@ void _HookMessage(Class cls, const char *msg, void *hook, void **old)
 	}
 	while (*msg++);
 	SEL sel = sel_registerName(name);
-	if (sel == NULL)
-	{
-		_Log(@"HttPeek: HookMessage Could not find %s", name);
-	}
 
+#ifdef _Support_CydiaSubstrate
 	//
 	static void (*_MSHookMessageEx)(Class cls, SEL sel, void *hook, void **old) = NULL;
 	if (_MSHookMessageEx == nil)
 	{
 		_MSHookMessageEx = dlsym(dlopen("/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate", RTLD_LAZY), "MSHookMessageEx");
+		_Log(@"HttPeek: _MSHookMessageEx = %p", _MSHookMessageEx);
+		if (_MSHookMessageEx == NULL)
+		{
+			_MSHookMessageEx = (void *)-1;
+		}
 	}
 
 	//
-	if (_MSHookMessageEx)
+	if (_MSHookMessageEx && (_MSHookMessageEx != (void *)-1))
 	{
 		_MSHookMessageEx(cls, sel, hook, old);
 	}
 	else
+#endif
 	{
-		_LogLine();
-		*old = method_setImplementation(class_getInstanceMethod(cls, sel), hook);
+		Method method = class_getInstanceMethod(cls, sel);
+		if (method == NULL)
+		{
+			_Log(@"HttPeek: HookMessage Could not find [%@ %s]", cls, name);
+		}
+		else
+		{
+			*old = method_setImplementation(method, hook);
+		}
 	}
 }
