@@ -9,8 +9,15 @@ HOOK_MESSAGE(void, NSURLSessionTask, resume)
 	_LogRequest([self currentRequest]);
 }
  */
-/*
-HOOK_META(NSURLSession *, NSURLSession2, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
+#ifdef _ForceProxy
+//
+_HOOK_MESSAGE(void, ASTNetworking, URLSession_task_didReceiveChallenge_completionHandler_, NSURLSession *session, NSURLSessionTask *task, NSURLAuthenticationChallenge *challenge, void (^completionHandler)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))
+{
+	_LogLine();
+	completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
+}
+
+HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
 {
 	NSString* proxyHost = @"192.168.1.3";
 	NSNumber* proxyPort = [NSNumber numberWithInt:8888];
@@ -29,9 +36,14 @@ HOOK_META(NSURLSession *, NSURLSession2, sessionWithConfiguration_delegate_deleg
 	_LogLine();
 	configuration.connectionProxyDictionary = proxyDict;
 	
-	return _NSURLSession2_sessionWithConfiguration_delegate_delegateQueue_(self, sel, configuration, delegate, queue);
+	NSLog(@"delegate: %@", delegate);
+	
+	void *old;
+	_HookMessage([(NSObject *)delegate class], "URLSession_task_didReceiveChallenge_completionHandler_", (void *)$ASTNetworking_URLSession_task_didReceiveChallenge_completionHandler_, &old);
+
+	return _NSURLSession_sessionWithConfiguration_delegate_delegateQueue_(self, sel, configuration, delegate, queue);
 }
-*/
+#endif
 
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_, NSURLRequest *request)
@@ -129,7 +141,7 @@ HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_completio
 	
 	_LogLine();
 	_LogRequest(request);
-	return _NSURLSession_dataTaskWithRequest_completionHandler_(self, sel, request, completionHandler2);
+	return _NSURLSession_dataTaskWithRequest_completionHandler_(self, sel, request, completionHandler);
 }
 
 //
