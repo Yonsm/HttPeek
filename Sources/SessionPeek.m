@@ -19,16 +19,15 @@ _HOOK_MESSAGE(void, ASTNetworking, URLSession_task_didReceiveChallenge_completio
 
 HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
 {
-	NSString* proxyHost = @"192.168.1.3";
-	NSNumber* proxyPort = [NSNumber numberWithInt:8888];
+#define proxyHost @"192.168.1.3"
+#define proxyPort @8888
 	
-	// Create an NSURLSessionConfiguration that uses the proxy
 	NSDictionary *proxyDict = @{
-								@"HTTPEnable"  : [NSNumber numberWithInt:1],
+								@"HTTPEnable"  : @YES,
 								(NSString *)kCFStreamPropertyHTTPProxyHost  : proxyHost,
 								(NSString *)kCFStreamPropertyHTTPProxyPort  : proxyPort,
 								
-								@"HTTPSEnable" : [NSNumber numberWithInt:1],
+								@"HTTPSEnable" : @YES,
 								(NSString *)kCFStreamPropertyHTTPSProxyHost : proxyHost,
 								(NSString *)kCFStreamPropertyHTTPSProxyPort : proxyPort,
 								};
