@@ -38,6 +38,10 @@ void _HookMessage(Class cls, const char *msg, void *hook, void **old)
 	}
 	while (*msg++);
 	SEL sel = sel_registerName(name);
+	if (sel == NULL)
+	{
+		_Log(@"HttPeek: HookMessage Could not find %s", name);
+	}
 
 	//
 	static void (*_MSHookMessageEx)(Class cls, SEL sel, void *hook, void **old) = NULL;
@@ -53,6 +57,7 @@ void _HookMessage(Class cls, const char *msg, void *hook, void **old)
 	}
 	else
 	{
+		_LogLine();
 		*old = method_setImplementation(class_getInstanceMethod(cls, sel), hook);
 	}
 }
