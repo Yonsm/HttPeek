@@ -92,6 +92,11 @@ extern "C"
 #endif
 int main()
 {
-	_LogLine();
+#if DEBUG
+	BOOL isDebug = YES;
+#else
+	BOOL isDebug = NO;
+#endif
+	_Log(@"Line Log: %s (%u) isDebug: %d", __FUNCTION__, __LINE__, isDebug);
 	return 0;
 }
