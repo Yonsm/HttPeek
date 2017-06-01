@@ -25,13 +25,14 @@ void LogData(const void *data, size_t dataLength, void *returnAddress)
 	Dl_info info = {0};
 	dladdr(returnAddress, &info);
 
-	BOOL txt = !memcmp(data, "GET ", 4) || !memcmp(data, "POST ", 5);
-	NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, [NSThread callStackSymbols]];
-	NSLog(@"HTTPEEK DATA: %@", str);
+	NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, @""];
+	NSLog(@"HTTPEEK DATA: %@\n", str);
 
 	NSMutableData *dat = [NSMutableData dataWithData:[str dataUsingEncoding:NSUTF8StringEncoding]];
 	[dat appendBytes:data length:dataLength];
-	if (txt) NSLog(@"%@", [[NSString alloc] initWithBytesNoCopy:(void *)data length:dataLength encoding:NSUTF8StringEncoding freeWhenDone:NO]);
+	
+	NSString *txt = [[NSString alloc] initWithBytesNoCopy:(void *)data length:dataLength encoding:NSUTF8StringEncoding freeWhenDone:YES];
+	if (txt) NSLog(@"%@\n\n", txt);
 
 	NSString *file = [NSString stringWithFormat:@"%@/DATA.%03d.%@", _logDir, s_index++, txt ? @"txt" : @"dat"];
 	[dat writeToFile:file atomically:NO];
@@ -66,8 +67,7 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 			Dl_info info = {0};
 			dladdr(returnAddress, &info);
 
-			NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n%@: %@\n%@\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, [NSThread callStackSymbols], request.HTTPMethod, request.URL.absoluteString, request.allHTTPHeaderFields ? request.allHTTPHeaderFields : @""];
-			NSLog(@"HTTPEEK REQUEST: %@", str);
+			NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n%@: %@\n%@\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, @"", request.HTTPMethod, request.URL.absoluteString, request.allHTTPHeaderFields ? request.allHTTPHeaderFields : @""];
 
 			NSString *file = [NSString stringWithFormat:@"%@/%03d=%@.txt", _logDir, s_index++, NSUrlPath([request.URL.host stringByAppendingString:request.URL.path])];
 			if (request.HTTPBody.length && request.HTTPBody.length < 10240)
@@ -75,11 +75,14 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 				NSString *str2 = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
 				if (str2)
 				{
-					[[str stringByAppendingString:str2] writeToFile:file atomically:NO encoding:NSUTF8StringEncoding error:nil];
+					//[[str stringByAppendingString:str2] writeToFile:file atomically:NO encoding:NSUTF8StringEncoding error:nil];
+					
+					NSLog(@"HTTPEEK REQUEST With Content: %@ \n%@\n\n", str, str2);
 					return;
 				}
 			}
 
+			NSLog(@"HTTPEEK REQUEST: %@\n", str);
 			[str writeToFile:file atomically:NO encoding:NSUTF8StringEncoding error:nil];
 			[request.HTTPBody writeToFile:[file stringByAppendingString:@".dat"] atomically:NO];
 		}
@@ -97,6 +100,6 @@ int main()
 #else
 	BOOL isDebug = NO;
 #endif
-	_Log(@"Line Log: %s (%u) isDebug: %d", __FUNCTION__, __LINE__, isDebug);
+	_Log(@"Line Log: %s (%u) %s isDebug: %d", __FUNCTION__, __LINE__, __TIME__, isDebug);
 	return 0;
 }
