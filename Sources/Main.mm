@@ -7,9 +7,10 @@
 #if __cplusplus
 extern "C"
 #endif
-void LogData(const void *data, size_t dataLength, void *returnAddress)
+const void *LogData(const void *data, size_t dataLength, void *returnAddress)
 {
-	if (data == nil || dataLength == 0) return;
+	if (data == nil || dataLength == 0)
+		return data;
 
     _LogLine();
 	static int s_index = 0;
@@ -36,13 +37,15 @@ void LogData(const void *data, size_t dataLength, void *returnAddress)
 
 	NSString *file = [NSString stringWithFormat:@"%@/DATA.%03d.%@", _logDir, s_index++, txt ? @"txt" : @"dat"];
 	[dat writeToFile:file atomically:NO];
+	
+	return data;
 }
 
 //
 #if __cplusplus
 extern "C"
 #endif
-void LogRequest(NSURLRequest *request, void *returnAddress)
+NSURLRequest *LogRequest(NSURLRequest *request, void *returnAddress)
 {
 	static int s_index = 0;
 	static NSString *_logDir = nil;
@@ -78,7 +81,7 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 					//[[str stringByAppendingString:str2] writeToFile:file atomically:NO encoding:NSUTF8StringEncoding error:nil];
 					
 					NSLog(@"HTTPEEK REQUEST With Content: %@ \n%@\n\n", str, str2);
-					return;
+					return request;
 				}
 			}
 
@@ -87,6 +90,8 @@ void LogRequest(NSURLRequest *request, void *returnAddress)
 			[request.HTTPBody writeToFile:[file stringByAppendingString:@".dat"] atomically:NO];
 		}
 	}
+	
+	return request;
 }
 
 //

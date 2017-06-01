@@ -12,12 +12,12 @@
 #if __cplusplus
 extern "C"
 #endif
-void LogData(const void *data, size_t dataLength, void *returnAddress);
+const void *LogData(const void *data, size_t dataLength, void *returnAddress);
 #define _LogData(data, dataLength) LogData(data, dataLength, __builtin_return_address(0))
 
 //
 #if __cplusplus
 extern "C"
 #endif
-void LogRequest(NSURLRequest *request, void *returnAddress);
+NSURLRequest *LogRequest(NSURLRequest *request, void *returnAddress);
 #define _LogRequest(request) LogRequest(request, __builtin_return_address(0))
