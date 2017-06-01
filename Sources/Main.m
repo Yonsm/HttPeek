@@ -1,4 +1,5 @@
 
+#import "NSData+GZIP.h"
 
 //
 NSString *LogFilePath(NSString *fileName, NSString *extName)
@@ -38,6 +39,31 @@ const void *LogData(const void *data, size_t dataLength, void *returnAddress)
 	return data;
 }
 
+void LogInfoData(NSString *info, NSURL *URL, NSData *data, NSString *typeName)
+{
+	NSString *logPath = LogFilePath(NSUrlPath([URL.host stringByAppendingString:URL.path]), [typeName stringByAppendingString:@".txt"]);
+	
+	data = [data gunzippedData];
+	if (data.length && data.length < 10240)
+	{
+		NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		if (content)
+		{
+			[[info stringByAppendingString:content] writeToFile:logPath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+			_Log(@"%@ With Text Content: %@\n%@\n\n", typeName, info, content);
+			return;
+		}
+	}
+	
+	_Log(@"%@: %@\n", typeName, info);
+	[info writeToFile:logPath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+	if (data.length)
+	{
+		_Log(@"With Binay Content <%d Bytes>", (int)data.length);
+		[data writeToFile:[logPath stringByAppendingString:@".dat"] atomically:NO];
+	}
+}
+
 //
 NSURLRequest *LogRequest(NSURLRequest *request, void *returnAddress)
 {
@@ -54,43 +80,23 @@ NSURLRequest *LogRequest(NSURLRequest *request, void *returnAddress)
 	{
 		if (value.pointerValue == (__bridge void*)request)
 		{
-			//_LogObj(@"Duplicated Request!!");
+			_LogObj(@"Duplicated Request!!");
 			return request;
 		}
 	}
 	[_requests addObject:[NSValue valueWithPointer:(__bridge void*)request]];
 	
-	//
-	
 	Dl_info info = {0};
 	dladdr(returnAddress, &info);
 	NSString *str = [NSString stringWithFormat:@"FROM %s(%p)-%s(%p=>%#08lx)\n<%@>\n%@: %@\n%@\n\n", info.dli_fname, info.dli_fbase, info.dli_sname, info.dli_saddr, (long)info.dli_saddr-(long)info.dli_fbase-0x1000, @"", request.HTTPMethod, request.URL.absoluteString, request.allHTTPHeaderFields ? request.allHTTPHeaderFields : @""];
-	
-	if (request.HTTPBody.length && request.HTTPBody.length < 10240)
-	{
-		NSString *str2 = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
-		if (str2)
-		{
-			//[[str stringByAppendingString:str2] writeToFile:file atomically:NO encoding:NSUTF8StringEncoding error:nil];
-			
-			NSLog(@"HTTPEEK REQUEST With Content: %@ \n%@\n\n", str, str2);
-			return request;
-		}
-	}
-	
-	NSLog(@"HTTPEEK REQUEST: %@\n", str);
-	NSString *fileName = NSUrlPath([request.URL.host stringByAppendingString:request.URL.path]);
-	[str writeToFile:LogFilePath(fileName, @"txt") atomically:NO encoding:NSUTF8StringEncoding error:nil];
-	[request.HTTPBody writeToFile:[fileName stringByAppendingString:@".dat"] atomically:NO];
 
+	LogInfoData(str, request.URL, request.HTTPBody, @"REQUEST");
 	return request;
 }
 
-
 NSURLResponse *LogResponse(NSURLResponse *response, NSData *data)
 {
-	_LogObj(response);
-	_LogData(data.bytes, data.length);
+	LogInfoData(response.description, response.URL, data, @"RESPONSE");
 	return response;
 }
 
