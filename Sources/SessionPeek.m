@@ -22,27 +22,24 @@ typedef void (^NSURLSessionTaskHandler)(NSData * _Nullable data, NSURLResponse *
 
 - (NSURLSessionTaskHandler)replacedHandler
 {
-	CFBridgingRetain(self);
-	
 	NSURLSessionTaskHandler replacedHandler =
 	^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
 	{
 		_LogLine();
-		_LogObj(response);
-		_LogData(data.bytes, data.length);
+		LogResponse(response, data);
 		if (_origionalHandler)
 		{
 			_origionalHandler(data, response, error);
 			_LogLine();
 		}
-		CFBridgingRelease((__bridge CFTypeRef)self);
+		_LogLine();
 	};
 	return replacedHandler;
 }
 
 @end
 
-#define _ReplaceHandler(handler) [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
+#define _ReplaceTaskHandler(handler) [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
 
 //
 HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
@@ -133,7 +130,7 @@ HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_completio
 {
 	_LogLine();
 	_Log(@"completionHandler:%@", completionHandler);
-	return _NSURLSession_dataTaskWithRequest_completionHandler_(self, sel, _LogRequest(request), _ReplaceHandler(completionHandler));
+	return _NSURLSession_dataTaskWithRequest_completionHandler_(self, sel, _LogRequest(request), _ReplaceTaskHandler(completionHandler));
 }
 
 //
@@ -141,21 +138,21 @@ HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithURL_completionHan
 {
 	_LogLine();
 	_LogRequest([NSURLRequest requestWithURL:url]);
-	return _NSURLSession_dataTaskWithURL_completionHandler_(self, sel, url, _ReplaceHandler(completionHandler));
+	return _NSURLSession_dataTaskWithURL_completionHandler_(self, sel, url, _ReplaceTaskHandler(completionHandler));
 }
 
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, uploadTaskWithRequest_fromFile_completionHandler_, NSURLRequest *request, NSURL *fileURL, void (^completionHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))
 {
 	_LogLine();
-	return _NSURLSession_uploadTaskWithRequest_fromFile_completionHandler_(self, sel, _LogRequest(request), fileURL, _ReplaceHandler(completionHandler));
+	return _NSURLSession_uploadTaskWithRequest_fromFile_completionHandler_(self, sel, _LogRequest(request), fileURL, _ReplaceTaskHandler(completionHandler));
 }
 
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, uploadTaskWithRequest_fromData_completionHandler_, NSURLRequest *request, NSData *bodyData, void (^completionHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))
 {
 	_LogLine();
-	return _NSURLSession_uploadTaskWithRequest_fromData_completionHandler_(self, sel, _LogRequest(request), bodyData, _ReplaceHandler(completionHandler));
+	return _NSURLSession_uploadTaskWithRequest_fromData_completionHandler_(self, sel, _LogRequest(request), bodyData, _ReplaceTaskHandler(completionHandler));
 }
 
 //
