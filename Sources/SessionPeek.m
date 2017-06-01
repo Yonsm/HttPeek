@@ -1,51 +1,48 @@
 
-//
-@interface CompletionHandler: NSObject <NSURLSessionDelegate>
-{
-	void (^_completionHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
-}
+typedef void (^NSURLSessionTaskHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error);
 
+//
+@interface ReplaceTaskHandler: NSObject <NSURLSessionDelegate>
+{
+	NSURLSessionTaskHandler _origionalHandler;
+}
 @end
 
 //
-@implementation CompletionHandler
+@implementation ReplaceTaskHandler
 
-- (instancetype)initWithHandler:(void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))completionHandler
+- (instancetype)initWithHandler:(NSURLSessionTaskHandler)handler
 {
 	self = [super init];
 	
-	NSLog(@"completionHandler: %p", completionHandler);
-	_completionHandler = completionHandler;
+	NSLog(@"completionHandler: %p", handler);
+	_origionalHandler = handler;
 	return self;
 };
 
-- (void (^)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error))newCompletionHandler
+- (NSURLSessionTaskHandler)replacedHandler
 {
 	CFBridgingRetain(self);
-	void (^newCompletionHandler)(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) =
+	
+	NSURLSessionTaskHandler replacedHandler =
 	^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
 	{
 		_LogLine();
 		_LogObj(response);
 		_LogData(data.bytes, data.length);
-		_LogLine();
-		
-		if (_completionHandler)
+		if (_origionalHandler)
 		{
-			_completionHandler(data, response, error);
+			_origionalHandler(data, response, error);
 			_LogLine();
 		}
-		else
-			_LogLine();
-		
-		//CFBridgingRelease((__bridge CFTypeRef)self);
+		CFBridgingRelease((__bridge CFTypeRef)self);
 	};
-	return newCompletionHandler;
+	return replacedHandler;
 }
 
 @end
 
-#define _ReplaceHandler(handler) [[[CompletionHandler alloc] initWithHandler:handler] newCompletionHandler]
+#define _ReplaceHandler(handler) [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
 
 //
 HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
