@@ -13,14 +13,15 @@
 extern "C"
 {
 #endif
-
+	
 	const void *LogData(const void *data, size_t dataLength, void *returnAddress);
 	NSURLRequest *LogRequest(NSURLRequest *request, void *returnAddress);
 	NSURLResponse *LogResponse(NSURLResponse *response, NSData *data);
-//
+	//
 #if __cplusplus
 }
 #endif
 
-#define _LogData(data, dataLength) LogData(data, dataLength, __builtin_return_address(0))
-#define _LogRequest(request) LogRequest(request, __builtin_return_address(0))
+#define _LogData(data, dataLength)	LogData(data, dataLength, __builtin_return_address(0))
+#define _LogRequest(request)		LogRequest(request, __builtin_return_address(0))
+#define _LogResponse				LogResponse
