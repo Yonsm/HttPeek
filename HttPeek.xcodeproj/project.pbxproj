@@ -12,7 +12,7 @@
 		241E962B1A6F4EA800AA3BD0 /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961F1A6F4EA800AA3BD0 /* NSUtil.h */; };
 		2465C55D1EDFFF0C00980F46 /* ConnectionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */; };
 		24B6E1DF1ACD729900118275 /* HookUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 24B6E1DD1ACD729900118275 /* HookUtil.h */; };
-		24CECD251ECD9B82003B31CD /* Main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 241E96171A6F4EA800AA3BD0 /* Main.mm */; };
+		24CECD251ECD9B82003B31CD /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96171A6F4EA800AA3BD0 /* Main.m */; };
 		24CECD271ECDA0E5003B31CD /* HookUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B6E1DE1ACD729900118275 /* HookUtil.m */; };
 		24CECD291ECDACB1003B31CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CECD221ECC634C003B31CD /* CFNetwork.framework */; };
 		24CECD2B1ECE9F21003B31CD /* SessionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CECD1E1ECC55A3003B31CD /* SessionPeek.m */; };
@@ -23,7 +23,7 @@
 		240277F11A885C7400897D2F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		241E96131A6F4EA800AA3BD0 /* ApplicationPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPeek.m; sourceTree = "<group>"; };
 		241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionPeek.m; sourceTree = "<group>"; };
-		241E96171A6F4EA800AA3BD0 /* Main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Main.mm; sourceTree = "<group>"; };
+		241E96171A6F4EA800AA3BD0 /* Main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main.m; sourceTree = "<group>"; };
 		241E96181A6F4EA800AA3BD0 /* NotificationPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationPeek.m; sourceTree = "<group>"; };
 		241E96191A6F4EA800AA3BD0 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadStreamPeek.m; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				241E96191A6F4EA800AA3BD0 /* Prefix.pch */,
-				241E96171A6F4EA800AA3BD0 /* Main.mm */,
+				241E96171A6F4EA800AA3BD0 /* Main.m */,
 				241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */,
 				24CECD1E1ECC55A3003B31CD /* SessionPeek.m */,
 				241E961C1A6F4EA800AA3BD0 /* WebViewPeek.m */,
@@ -198,7 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24CECD271ECDA0E5003B31CD /* HookUtil.m in Sources */,
-				24CECD251ECD9B82003B31CD /* Main.mm in Sources */,
+				24CECD251ECD9B82003B31CD /* Main.m in Sources */,
 				2465C55D1EDFFF0C00980F46 /* ConnectionPeek.m in Sources */,
 				24CECD2B1ECE9F21003B31CD /* SessionPeek.m in Sources */,
 				24CECD2C1ECEA622003B31CD /* SSLPeek.m in Sources */,
