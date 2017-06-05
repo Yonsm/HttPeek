@@ -38,7 +38,7 @@ typedef void (^NSURLSessionTaskHandler)(NSData * _Nullable data, NSURLResponse *
 
 @end
 
-#define _ReplaceTaskHandler(handler) [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
+#define _ReplaceTaskHandler(handler) ([[self configuration] identifier] && !handler) ? handler : [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
 
 //
 HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
