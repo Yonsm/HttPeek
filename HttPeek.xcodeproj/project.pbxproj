@@ -199,7 +199,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nscp $CODESIGNING_FOLDER_PATH root@6Phone:/Library/MobileSubstrate/DynamicLibraries/\n\nssh root@6Phone \"killall Preferences; ldid -S /Library/MobileSubstrate/DynamicLibraries/HttPeek.dylib; open com.apple.Preferences\"\n";
+			shellScript = "\nscp $CODESIGNING_FOLDER_PATH root@192.168.1.28:/Library/MobileSubstrate/DynamicLibraries/\n\nssh root@192.168.1.28 \"killall Preferences; ldid -S /Library/MobileSubstrate/DynamicLibraries/HttPeek.dylib; open com.apple.Preferences\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

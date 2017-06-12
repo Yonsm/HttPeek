@@ -11,7 +11,12 @@ NSString *LogFilePath(NSString *fileName, NSString *extName)
 		[[NSFileManager defaultManager] createDirectoryAtPath:_logDir withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	static int _index = 0;
+#define _SIMPLE
+#ifdef _SIMPLE
+	return [NSString stringWithFormat:@"%@/%@.%@", _logDir, fileName, extName];
+#else
 	return [NSString stringWithFormat:@"%@/%03d-%@.%@", _logDir, _index++, fileName, extName];
+#endif
 }
 
 //
@@ -41,11 +46,22 @@ const void *LogData(const void *data, size_t dataLength, void *returnAddress)
 
 void LogInfoData(NSString *info, NSURL *URL, NSData *data, NSString *typeName)
 {
+#ifdef _SIMPLE
+	NSString *logPath = LogFilePath(NSUrlPath(URL.path), [typeName stringByAppendingString:@".txt"]);
+#else
 	NSString *logPath = LogFilePath(NSUrlPath([URL.host stringByAppendingString:URL.path]), [typeName stringByAppendingString:@".txt"]);
-	
+#endif
 	data = [data gunzippedData];
 	if (data.length && data.length < 10240)
 	{
+#ifdef _SIMPLE
+		id obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+		if (obj)
+		{
+			data = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:nil];
+		}
+#endif
+		
 		NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		if (content)
 		{
