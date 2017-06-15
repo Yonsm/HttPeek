@@ -10,7 +10,8 @@
 		241E96261A6F4EA800AA3BD0 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 241E96191A6F4EA800AA3BD0 /* Prefix.pch */; };
 		241E962A1A6F4EA800AA3BD0 /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961E1A6F4EA800AA3BD0 /* Macro.h */; };
 		241E962B1A6F4EA800AA3BD0 /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961F1A6F4EA800AA3BD0 /* NSUtil.h */; };
-		2465C55D1EDFFF0C00980F46 /* ConnectionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */; };
+		2490C13B1EF23D6D00605763 /* SessionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CECD1E1ECC55A3003B31CD /* SessionPeek.m */; };
+		2490C13C1EF23F6200605763 /* SSLPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */; };
 		2497C3A81EE01C35006EB44B /* NSData+GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 2497C3A61EE01C35006EB44B /* NSData+GZIP.m */; };
 		2497C3A91EE01C35006EB44B /* NSData+GZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2497C3A71EE01C35006EB44B /* NSData+GZIP.h */; };
 		2497C3AB1EE01C46006EB44B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2497C3AA1EE01C46006EB44B /* libz.tbd */; };
@@ -18,8 +19,6 @@
 		24CECD251ECD9B82003B31CD /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96171A6F4EA800AA3BD0 /* Main.m */; };
 		24CECD271ECDA0E5003B31CD /* HookUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B6E1DE1ACD729900118275 /* HookUtil.m */; };
 		24CECD291ECDACB1003B31CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CECD221ECC634C003B31CD /* CFNetwork.framework */; };
-		24CECD2B1ECE9F21003B31CD /* SessionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CECD1E1ECC55A3003B31CD /* SessionPeek.m */; };
-		24CECD2C1ECEA622003B31CD /* SSLPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,11 +208,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				24CECD271ECDA0E5003B31CD /* HookUtil.m in Sources */,
+				2490C13B1EF23D6D00605763 /* SessionPeek.m in Sources */,
 				24CECD251ECD9B82003B31CD /* Main.m in Sources */,
-				2465C55D1EDFFF0C00980F46 /* ConnectionPeek.m in Sources */,
-				24CECD2B1ECE9F21003B31CD /* SessionPeek.m in Sources */,
 				2497C3A81EE01C35006EB44B /* NSData+GZIP.m in Sources */,
-				24CECD2C1ECEA622003B31CD /* SSLPeek.m in Sources */,
+				2490C13C1EF23F6200605763 /* SSLPeek.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

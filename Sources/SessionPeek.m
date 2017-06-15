@@ -33,14 +33,16 @@ typedef void (^NSURLSessionTaskHandler)(NSData * _Nullable data, NSURLResponse *
 			_LogLine();
 		}
 	};
+	if (!_origionalHandler) return nil;
 	return replacedHandler;
 }
 
 @end
 
-#define _ReplaceTaskHandler(handler) ([[self configuration] identifier] && !handler) ? handler : [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
+#define _ReplaceTaskHandler(handler) (/*[[self configuration] identifier] && !handler*/!handler) ? handler : [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
 
 //
+#if 0
 HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
 {
 	_LogLine();
@@ -51,6 +53,7 @@ HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delega
 	}
 	return _NSURLSession_sessionWithConfiguration_delegate_delegateQueue_(self, sel, configuration, delegate, queue);
 }
+#endif
 
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_, NSURLRequest *request)

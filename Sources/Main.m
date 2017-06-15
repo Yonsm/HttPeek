@@ -10,11 +10,11 @@ NSString *LogFilePath(NSString *fileName, NSString *extName)
 		_logDir = [[NSString alloc] initWithFormat:@"/tmp/%@.req", NSProcessInfo.processInfo.processName];
 		[[NSFileManager defaultManager] createDirectoryAtPath:_logDir withIntermediateDirectories:YES attributes:nil error:nil];
 	}
-	static int _index = 0;
 #define _SIMPLE
 #ifdef _SIMPLE
 	return [NSString stringWithFormat:@"%@/%@.%@", _logDir, fileName, extName];
 #else
+	static int _index = 0;
 	return [NSString stringWithFormat:@"%@/%03d-%@.%@", _logDir, _index++, fileName, extName];
 #endif
 }
@@ -47,7 +47,7 @@ const void *LogData(const void *data, size_t dataLength, void *returnAddress)
 void LogInfoData(NSString *info, NSURL *URL, NSData *data, NSString *typeName)
 {
 #ifdef _SIMPLE
-	NSString *logPath = LogFilePath(NSUrlPath(URL.path), [typeName stringByAppendingString:@".txt"]);
+	NSString *logPath = LogFilePath(NSUrlPath(URL.path.lastPathComponent), [typeName stringByAppendingString:@".txt"]);
 #else
 	NSString *logPath = LogFilePath(NSUrlPath([URL.host stringByAppendingString:URL.path]), [typeName stringByAppendingString:@".txt"]);
 #endif
