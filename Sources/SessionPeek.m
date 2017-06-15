@@ -33,16 +33,27 @@ typedef void (^NSURLSessionTaskHandler)(NSData * _Nullable data, NSURLResponse *
 			_LogLine();
 		}
 	};
-	if (!_origionalHandler) return nil;
 	return replacedHandler;
 }
 
 @end
 
-#define _ReplaceTaskHandler(handler) (/*[[self configuration] identifier] && !handler*/!handler) ? handler : [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler]
+#define _ReplaceTaskHandler(handler) (handler ? [[[ReplaceTaskHandler alloc] initWithHandler:handler] replacedHandler] : nil)
 
 //
-#if 0
+_HOOK_MESSAGE(void, URLSessionTaskDelegateFaker, URLSession_dataTask_didReceiveResponse_completionHandler_, NSURLSession *session, NSURLSessionDataTask *dataTask, NSURLResponse *response, void (^completionHandler)(NSURLSessionResponseDisposition disposition))
+{
+	_LogResponse(response, nil);
+	return _URLSessionTaskDelegateFaker_URLSession_dataTask_didReceiveResponse_completionHandler_(self, sel, session, dataTask, response, completionHandler);
+}
+
+_HOOK_MESSAGE(void, URLSessionTaskDelegateFaker, URLSession_dataTask_didReceiveData_, NSURLSession *session, NSURLSessionDataTask *dataTask, NSData *data)
+{
+	_LogResponse(dataTask.response, data);
+	return _URLSessionTaskDelegateFaker_URLSession_dataTask_didReceiveData_(self, sel, session, dataTask, data);
+}
+
+//
 HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delegateQueue_, NSURLSessionConfiguration *configuration, id <NSURLSessionDelegate> delegate, NSOperationQueue * queue)
 {
 	_LogLine();
@@ -50,10 +61,20 @@ HOOK_META(NSURLSession *, NSURLSession, sessionWithConfiguration_delegate_delega
 	{
 		_LogObj(delegate);
 		_LogStack();
+		
+		if ([delegate respondsToSelector:@selector(URLSession:dataTask:didReceiveResponse:completionHandler:)])
+		{
+			_Log(@"Hook -[%@ URLSession:dataTask:didReceiveResponse:completionHandler:]", delegate.description);
+			HUHookMessage(object_getClassName(delegate), false, "URLSession_dataTask_didReceiveResponse_completionHandler_", (IMP)$URLSessionTaskDelegateFaker_URLSession_dataTask_didReceiveResponse_completionHandler_, (IMP *)&_URLSessionTaskDelegateFaker_URLSession_dataTask_didReceiveResponse_completionHandler_);
+		}
+		if ([delegate respondsToSelector:@selector(URLSession:dataTask:didReceiveData:)])
+		{
+			_Log(@"Hook -[%@ URLSession:dataTask:didReceiveData:]", delegate.description);
+			HUHookMessage(object_getClassName(delegate), false, "URLSession_dataTask_didReceiveData_", (IMP)$URLSessionTaskDelegateFaker_URLSession_dataTask_didReceiveData_, (IMP *)&_URLSessionTaskDelegateFaker_URLSession_dataTask_didReceiveData_);
+		}
 	}
 	return _NSURLSession_sessionWithConfiguration_delegate_delegateQueue_(self, sel, configuration, delegate, queue);
 }
-#endif
 
 //
 HOOK_MESSAGE(NSURLSessionDataTask *, NSURLSession, dataTaskWithRequest_, NSURLRequest *request)

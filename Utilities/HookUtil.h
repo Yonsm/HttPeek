@@ -1,35 +1,62 @@
 
 #import <objc/runtime.h>
 
-//
-#define _HOOK_FUNCTION_(MOD, RET, LIB, FUN, ...)		RET $##FUN(__VA_ARGS__);\
-														RET (*_##FUN)(__VA_ARGS__);\
-														__attribute__((MOD)) void _Init_##FUN() {_HookFunction(#LIB, #FUN, (void *)$##FUN, (void **)&_##FUN);}\
-														RET $##FUN(__VA_ARGS__)
-
-#define _HOOK_MESSAGE_(MOD, RET, CLS, MSG, META, ...)	RET $##CLS##_##MSG(id self, SEL sel, ##__VA_ARGS__);\
-														RET (*_##CLS##_##MSG)(id self, SEL sel, ##__VA_ARGS__);\
-														__attribute__((MOD)) void _Init_##CLS##_##MSG() {_HookMessage(objc_get##META##Class(#CLS), #MSG, (void *)$##CLS##_##MSG, (void **)&_##CLS##_##MSG);}\
-														RET $##CLS##_##MSG(id self, SEL sel, ##__VA_ARGS__)
-
-// 需要手动调用 _Init_*** 初始化 HOOK
-#define _HOOK_FUNCTION(RET, LIB, FUN, ...)				_HOOK_FUNCTION_(always_inline, RET, LIB, FUN, ##__VA_ARGS__)
-#define _HOOK_MESSAGE(RET, CLS, MSG, ...)				_HOOK_MESSAGE_(always_inline, RET, CLS, MSG, , ##__VA_ARGS__)
-#define _HOOK_META(RET, CLS, MSG, ...)					_HOOK_MESSAGE_(always_inline, RET, CLS, MSG, Meta, ##__VA_ARGS__)
-
-// 自动初始化 HOOK
-#define HOOK_FUNCTION(RET, LIB, FUN, ...)				_HOOK_FUNCTION_(constructor, RET, LIB, FUN, ##__VA_ARGS__)
-#define HOOK_MESSAGE(RET, CLS, MSG, ...)				_HOOK_MESSAGE_(constructor, RET, CLS, MSG, , ##__VA_ARGS__)
-#define HOOK_META(RET, CLS, MSG, ...)					_HOOK_MESSAGE_(constructor, RET, CLS, MSG, Meta, ##__VA_ARGS__)
+#define _Support_CydiaSubstrate
 
 //
 #ifdef __cplusplus
 extern "C"
+{
 #endif
-void _HookFunction(const char *lib, const char *fun, void *hook, void **old);
+
+#ifdef _Support_CydiaSubstrate
+	bool MSHookFunction(void *symbol, void *hook, void **old);	// Return false if no Cydia Substrate
+	bool MSHookMessage(Class cls, SEL sel, IMP hook, IMP *old);	// Return false if no Cydia Substrate
+#endif
+	
+	void HUHookFunction(const char *lib, const char *func, void *hook, void **old);
+	void HUHookMessage(const char * cls, bool meta, const char *name, IMP hook, IMP *old);	// Name means ObjC message, use '_' for ':', '__' for '_'
+	
+	bool HUIsAnyOneMatched(const char *any, const char *one, char separator);
+	void HUHookFunctionForProcess(const char *proc, const char *lib, const char *func, void *hook, void **old);
+	void HUHookMessageForProcess(const char *proc, const char * cls, bool meta, const char *name, IMP hook, IMP *old);
+#ifdef __cplusplus
+}
+#endif
 
 //
-#ifdef __cplusplus
-extern "C"
-#endif
-void _HookMessage(Class cls, const char *msg, void *hook, void **old);
+#define __HUHookFunction(NOUSE, ...)						HUHookFunction(__VA_ARGS__)
+#define __HUHookMessage(NOUSE, ...)							HUHookMessage(__VA_ARGS__)
+
+#define __HOOK_FUNCTION(MOD, HKFN, PROC, RET, LIB, FUNC, ...) RET $##FUNC(__VA_ARGS__);\
+															RET (*_##FUNC)(__VA_ARGS__);\
+															__attribute__((MOD)) void _Init_##FUNC()\
+															{\
+																HKFN(#PROC, #LIB, #FUNC, (void *)$##FUNC, (void **)&_##FUNC);\
+															}\
+															RET $##FUNC(__VA_ARGS__)
+
+#define __HOOK_MESSAGE(MOD, HKFN, PROC, RET, CLS, MSG, META, ...)\
+															RET $##CLS##_##MSG(id self, SEL sel, ##__VA_ARGS__);\
+															RET (*_##CLS##_##MSG)(id self, SEL sel, ##__VA_ARGS__);\
+															__attribute__((MOD)) void _Init_##CLS##_##MSG()\
+															{\
+																HKFN(#PROC, #CLS, META, #MSG, (IMP)$##CLS##_##MSG, (IMP *)&_##CLS##_##MSG);\
+															}\
+															RET $##CLS##_##MSG(id self, SEL sel, ##__VA_ARGS__)
+
+// Manual hook, call _Init_*** to enable the hook
+#define _HOOK_FUNCTION(RET, LIB, FUN, ...)					__HOOK_FUNCTION(always_inline, __HUHookFunction, , RET, LIB, FUN, ##__VA_ARGS__)
+#define _HOOK_MESSAGE(RET, CLS, MSG, ...)					__HOOK_MESSAGE(always_inline, __HUHookMessage, , RET, CLS, MSG, false, ##__VA_ARGS__)
+#define _HOOK_META(RET, CLS, MSG, ...)						__HOOK_MESSAGE(always_inline, __HUHookMessage, , RET, CLS, MSG, true, ##__VA_ARGS__)
+
+// Automatic hook
+#define HOOK_FUNCTION(RET, LIB, FUN, ...)					__HOOK_FUNCTION(constructor, __HUHookFunction, , RET, LIB, FUN, ##__VA_ARGS__)
+#define HOOK_MESSAGE(RET, CLS, MSG, ...)					__HOOK_MESSAGE(constructor, __HUHookMessage, , RET, CLS, MSG, false, ##__VA_ARGS__)
+#define HOOK_META(RET, CLS, MSG, ...)						__HOOK_MESSAGE(constructor, __HUHookMessage, , RET, CLS, MSG, true, ##__VA_ARGS__)
+
+// Automatic hook for special process name
+// Use | separator for multiple process name
+#define HOOK_FUNCTION_FOR_PROCESS(PROC, RET, LIB, FUN, ...)	__HOOK_FUNCTION(constructor, HUHookFunctionForProcess, PROC, RET, LIB, FUN, ##__VA_ARGS__)
+#define HOOK_MESSAGE_FOR_PROCESS(PROC, RET, CLS, MSG, ...)	__HOOK_MESSAGE(constructor, HUHookMessageForProcess, PROC, RET, CLS, MSG, false, ##__VA_ARGS__)
+#define HOOK_META_FOR_PROCESS(PROC, RET, CLS, MSG, ...)		__HOOK_MESSAGE(constructor, HUHookMessageForProcess, PROC, RET, CLS, MSG, true, ##__VA_ARGS__)

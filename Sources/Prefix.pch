@@ -5,14 +5,14 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import "NSUtil.h"
-#endif
-
-#import "HookUtil.h"
 
 const void *LogData(const void *data, size_t dataLength, void *returnAddress);
 NSURLRequest *LogRequest(NSURLRequest *request, void *returnAddress);
 NSURLResponse *LogResponse(NSURLResponse *response, NSData *data);
+#endif
+
+#import "HookUtil.h"
 
 #define _LogData(data, dataLength)	LogData(data, dataLength, __builtin_return_address(0))
-#define _LogRequest(request)		LogRequest(request, __builtin_return_address(0))
-#define _LogResponse				LogResponse
+#define _LogRequest(req)			LogRequest(req, __builtin_return_address(0))
+#define _LogResponse(resp, data)	LogResponse(resp, data)
