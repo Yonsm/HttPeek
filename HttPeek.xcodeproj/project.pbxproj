@@ -17,6 +17,20 @@
 		2497C3A91EE01C35006EB44B /* NSData+GZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2497C3A71EE01C35006EB44B /* NSData+GZIP.h */; };
 		2497C3AB1EE01C46006EB44B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2497C3AA1EE01C46006EB44B /* libz.tbd */; };
 		24B6E1DF1ACD729900118275 /* HookUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 24B6E1DD1ACD729900118275 /* HookUtil.h */; };
+		24C3DBE51F1786D500EC9A8C /* SessionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CECD1E1ECC55A3003B31CD /* SessionPeek.m */; };
+		24C3DBE61F1786D500EC9A8C /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96171A6F4EA800AA3BD0 /* Main.m */; };
+		24C3DBE71F1786D500EC9A8C /* NSData+GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 2497C3A61EE01C35006EB44B /* NSData+GZIP.m */; };
+		24C3DBE81F1786D500EC9A8C /* HookUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 2490C13E1EF2454F00605763 /* HookUtil.c */; };
+		24C3DBE91F1786D500EC9A8C /* SSLPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */; };
+		24C3DBEB1F1786D500EC9A8C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2497C3AA1EE01C46006EB44B /* libz.tbd */; };
+		24C3DBEC1F1786D500EC9A8C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CECD221ECC634C003B31CD /* CFNetwork.framework */; };
+		24C3DBEE1F1786D500EC9A8C /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961E1A6F4EA800AA3BD0 /* Macro.h */; };
+		24C3DBEF1F1786D500EC9A8C /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 241E961F1A6F4EA800AA3BD0 /* NSUtil.h */; };
+		24C3DBF01F1786D500EC9A8C /* NSData+GZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2497C3A71EE01C35006EB44B /* NSData+GZIP.h */; };
+		24C3DBF11F1786D500EC9A8C /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 241E96191A6F4EA800AA3BD0 /* Prefix.pch */; };
+		24C3DBF21F1786D500EC9A8C /* HookUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 24B6E1DD1ACD729900118275 /* HookUtil.h */; };
+		24C3DBF81F1789C900EC9A8C /* ConnectionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */; };
+		24C3DBF91F1789C900EC9A8C /* ConnectionPeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */; };
 		24CECD251ECD9B82003B31CD /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E96171A6F4EA800AA3BD0 /* Main.m */; };
 		24CECD291ECDACB1003B31CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CECD221ECC634C003B31CD /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
@@ -39,6 +53,7 @@
 		2497C3AA1EE01C46006EB44B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		24B6E1DD1ACD729900118275 /* HookUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HookUtil.h; sourceTree = "<group>"; };
 		24C1807515104BF100951174 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		24C3DBF71F1786D500EC9A8C /* HttPeex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = HttPeex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CADA8D1510492B00B22162 /* HttPeek.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = HttPeek.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CADA901510492B00B22162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24CECD1E1ECC55A3003B31CD /* SessionPeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionPeek.m; sourceTree = "<group>"; };
@@ -47,6 +62,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		24C3DBEA1F1786D500EC9A8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24C3DBEB1F1786D500EC9A8C /* libz.tbd in Frameworks */,
+				24C3DBEC1F1786D500EC9A8C /* CFNetwork.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24CADA8A1510492B00B22162 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,15 +86,12 @@
 		241E96121A6F4EA800AA3BD0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				24C3DBFA1F1789EE00EC9A8C /* Nouse */,
 				241E96191A6F4EA800AA3BD0 /* Prefix.pch */,
 				241E96171A6F4EA800AA3BD0 /* Main.m */,
 				241E961B1A6F4EA800AA3BD0 /* SSLPeek.m */,
 				24CECD1E1ECC55A3003B31CD /* SessionPeek.m */,
-				241E961C1A6F4EA800AA3BD0 /* WebViewPeek.m */,
-				241E96131A6F4EA800AA3BD0 /* ApplicationPeek.m */,
 				241E96141A6F4EA800AA3BD0 /* ConnectionPeek.m */,
-				241E96181A6F4EA800AA3BD0 /* NotificationPeek.m */,
-				241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -88,6 +109,17 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		24C3DBFA1F1789EE00EC9A8C /* Nouse */ = {
+			isa = PBXGroup;
+			children = (
+				241E961C1A6F4EA800AA3BD0 /* WebViewPeek.m */,
+				241E96131A6F4EA800AA3BD0 /* ApplicationPeek.m */,
+				241E96181A6F4EA800AA3BD0 /* NotificationPeek.m */,
+				241E961A1A6F4EA800AA3BD0 /* ReadStreamPeek.m */,
+			);
+			name = Nouse;
+			sourceTree = "<group>";
+		};
 		24CADA821510492B00B22162 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				24CADA8D1510492B00B22162 /* HttPeek.dylib */,
+				24C3DBF71F1786D500EC9A8C /* HttPeex.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +155,18 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		24C3DBED1F1786D500EC9A8C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24C3DBEE1F1786D500EC9A8C /* Macro.h in Headers */,
+				24C3DBEF1F1786D500EC9A8C /* NSUtil.h in Headers */,
+				24C3DBF01F1786D500EC9A8C /* NSData+GZIP.h in Headers */,
+				24C3DBF11F1786D500EC9A8C /* Prefix.pch in Headers */,
+				24C3DBF21F1786D500EC9A8C /* HookUtil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24CADA8B1510492B00B22162 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +182,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		24C3DBE31F1786D500EC9A8C /* HttPeex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24C3DBF41F1786D500EC9A8C /* Build configuration list for PBXNativeTarget "HttPeex" */;
+			buildPhases = (
+				24C3DBE41F1786D500EC9A8C /* Sources */,
+				24C3DBEA1F1786D500EC9A8C /* Frameworks */,
+				24C3DBED1F1786D500EC9A8C /* Headers */,
+				24C3DBF31F1786D500EC9A8C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HttPeex;
+			productName = HttPeek;
+			productReference = 24C3DBF71F1786D500EC9A8C /* HttPeex.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		24CADA8C1510492B00B22162 /* HttPeek */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24CADA9A1510492B00B22162 /* Build configuration list for PBXNativeTarget "HttPeek" */;
@@ -163,6 +226,9 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
+					24C3DBE31F1786D500EC9A8C = {
+						DevelopmentTeam = 97Y98KA82X;
+					};
 					24CADA8C1510492B00B22162 = {
 						DevelopmentTeam = 97Y98KA82X;
 						ProvisioningStyle = Automatic;
@@ -182,6 +248,7 @@
 			projectRoot = "";
 			targets = (
 				24CADA8C1510492B00B22162 /* HttPeek */,
+				24C3DBE31F1786D500EC9A8C /* HttPeex */,
 			);
 		};
 /* End PBXProject section */
@@ -198,11 +265,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nscp $CODESIGNING_FOLDER_PATH root@192.168.1.28:/Library/MobileSubstrate/DynamicLibraries/\n\nssh root@192.168.1.28 \"killall Preferences; ldid -S /Library/MobileSubstrate/DynamicLibraries/HttPeek.dylib; open com.apple.Preferences\"\n";
+			shellScript = "exit 0\nscp $CODESIGNING_FOLDER_PATH root@192.168.1.28:/Library/MobileSubstrate/DynamicLibraries/\n\nssh root@192.168.1.28 \"killall Preferences; ldid -S /Library/MobileSubstrate/DynamicLibraries/HttPeek.dylib; open com.apple.Preferences\"\n";
+		};
+		24C3DBF31F1786D500EC9A8C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		24C3DBE41F1786D500EC9A8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24C3DBE51F1786D500EC9A8C /* SessionPeek.m in Sources */,
+				24C3DBE61F1786D500EC9A8C /* Main.m in Sources */,
+				24C3DBE71F1786D500EC9A8C /* NSData+GZIP.m in Sources */,
+				24C3DBE81F1786D500EC9A8C /* HookUtil.c in Sources */,
+				24C3DBF91F1789C900EC9A8C /* ConnectionPeek.m in Sources */,
+				24C3DBE91F1786D500EC9A8C /* SSLPeek.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24CADA891510492B00B22162 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +304,7 @@
 				24CECD251ECD9B82003B31CD /* Main.m in Sources */,
 				2497C3A81EE01C35006EB44B /* NSData+GZIP.m in Sources */,
 				2490C13F1EF2454F00605763 /* HookUtil.c in Sources */,
+				24C3DBF81F1789C900EC9A8C /* ConnectionPeek.m in Sources */,
 				2490C13C1EF23F6200605763 /* SSLPeek.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +312,32 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		24C3DBF51F1786D500EC9A8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 97Y98KA82X;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.HttPeek;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		24C3DBF61F1786D500EC9A8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 97Y98KA82X;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.HttPeek;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
 		24CADA981510492B00B22162 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -296,6 +416,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		24C3DBF41F1786D500EC9A8C /* Build configuration list for PBXNativeTarget "HttPeex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24C3DBF51F1786D500EC9A8C /* Debug */,
+				24C3DBF61F1786D500EC9A8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		24CADA871510492B00B22162 /* Build configuration list for PBXProject "HttPeek" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

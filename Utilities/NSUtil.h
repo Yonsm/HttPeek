@@ -81,23 +81,17 @@ NS_INLINE NSString *NSDocumentSubPath(NSString *file)
 //
 NS_INLINE NSString *NSCachePath()
 {
-//	return NSDocumentSubPath(@"Cache");
-	return [NSUserDirectoryPath(NSCachesDirectory) stringByAppendingPathComponent:@"Cache"];
+	return NSUserDirectoryPath(NSCachesDirectory);
 }
 
 //
 NS_INLINE NSString *NSCacheSubPath(NSString *file)
 {
-	NSString *dir = NSCachePath();
-	if (![NSFileManager.defaultManager fileExistsAtPath:dir])
-	{
-		[NSFileManager.defaultManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
-	}
-	return [dir stringByAppendingPathComponent:file];
+	return [NSCachePath() stringByAppendingPathComponent:file];
 }
 
 //
-NS_INLINE NSString *NSUrlPath(NSString *url)
+NS_INLINE NSString *NSUrlToFilename(NSString *url)
 {
 	unichar chars[256];
 	NSRange range = {0, MIN(url.length, 256)};
@@ -125,7 +119,14 @@ NS_INLINE NSString *NSUrlPath(NSString *url)
 //
 NS_INLINE NSString *NSCacheUrlPath(NSString *url)
 {
-	return NSCacheSubPath(NSUrlPath(url));
+	NSString *dir = NSCacheSubPath(@"UrlCaches");
+	if (![NSFileManager.defaultManager fileExistsAtPath:dir])
+	{
+		[NSFileManager.defaultManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
+	}
+
+	NSString *filename = NSUrlToFilename(url);
+	return [dir stringByAppendingPathComponent:filename];
 }
 
 //
@@ -171,6 +172,29 @@ NS_INLINE NSString *NSFormatNumber(NSNumber *number, NSNumberFormatterStyle styl
 	return [formatter stringFromNumber:number];
 }
 
+// Convert byte size to string
+NS_INLINE NSString *NSFormatByteSize(long long size)
+{
+	const long long GB = 1024 * 1024 * 1024;
+	const long long MB = 1024 * 1024;
+	const long long KB = 1024;
+
+	NSString *formatSize = @"";
+	if (size > GB)
+	{
+		formatSize = [NSString stringWithFormat:@"%.01fG", (double)size / GB];
+	} else if (size > MB)
+	{
+		formatSize = [NSString stringWithFormat:@"%.01fM", (double)size / MB];
+	} else if (size > KB)
+	{
+		formatSize = [NSString stringWithFormat:@"%.01fK", (double)size / KB];
+	} else {
+		formatSize = [NSString stringWithFormat:@"%lldB", size];
+	}
+	return formatSize;
+}
+
 // Convert date to string
 NS_INLINE NSString *NSFormatDate(NSDate *date, NSString *format)
 {
@@ -213,12 +237,12 @@ NS_INLINE NSString *NSFormatDateBeforeNow(NSDate *date)
 	NSDate *now = NSDate.date;
 	NSTimeInterval t = [now timeIntervalSinceDate:date];
 	if (t < 0) return nil;
-	if (t < 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Seconds Before", @"%d秒前"), (int)t];
-	if (t < 60 * 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Minutes Before", @"%d分钟前"), (int)(t/60)];
-	if (t < 60 * 60 * 24) return [NSString stringWithFormat:NSLocalizedString(@"%d Hours Before", @"%d小时前"), (int)(t/(60 * 60))];
-	if (t < 60 * 60 * 24 * 31) return [NSString stringWithFormat:NSLocalizedString(@"%d Days Before", @"%d天前"), (int)(t/(60 * 60 * 24))];
-	if (t < 60 * 60 * 24 * 365) return [NSString stringWithFormat:NSLocalizedString(@"%d Months Before", @"%d个月前"), (int)(t/(60 * 60 * 24 * 30))];
-	/*if (t < 60 * 60 * 24 * 365) */return [NSString stringWithFormat:NSLocalizedString(@"%d Years Before", @"%d年前"), (int)(t/(60 * 60 * 24 * 365))];
+	if (t < 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Seconds Before", @"%d秒前"), (NSUInteger)t];
+	if (t < 60 * 60) return [NSString stringWithFormat:NSLocalizedString(@"%d Minutes Before", @"%d分钟前"), (NSUInteger)(t/60)];
+	if (t < 60 * 60 * 24) return [NSString stringWithFormat:NSLocalizedString(@"%d Hours Before", @"%d小时前"), (NSUInteger)(t/(60 * 60))];
+	if (t < 60 * 60 * 24 * 31) return [NSString stringWithFormat:NSLocalizedString(@"%d Days Before", @"%d天前"), (NSUInteger)(t/(60 * 60 * 24))];
+	if (t < 60 * 60 * 24 * 365) return [NSString stringWithFormat:NSLocalizedString(@"%d Months Before", @"%d个月前"), (NSUInteger)(t/(60 * 60 * 24 * 30))];
+	/*if (t < 60 * 60 * 24 * 365) */return [NSString stringWithFormat:NSLocalizedString(@"%d Years Before", @"%d年前"), (NSUInteger)(t/(60 * 60 * 24 * 365))];
 	return NSLocalizedString(@"Long Long Before", @"好久好久以前");
 }
 
@@ -311,20 +335,22 @@ NS_INLINE NSString *NSStringMask(NSString *str, NSInteger location, NSInteger le
 //
 NS_INLINE NSString *NSUrlEscape(NSString *string)
 {
-	return CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-																	 (CFStringRef)string,
-																	 NULL,
-																	 CFSTR("!*'();:@&=+$,/?%#[]"),
-																	 kCFStringEncodingUTF8));
+	return [string stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
+//	return CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+//																	 (CFStringRef)string,
+//																	 NULL,
+//																	 CFSTR("!*'();:@&=+$,/?%#[]"),
+//																	 kCFStringEncodingUTF8));
 }
 
 //
 NS_INLINE NSString *NSUrlUnEscape(NSString *string)
 {
-	return CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
-																								 (CFStringRef)string,
-																								 CFSTR(""),
-																								 kCFStringEncodingUTF8));
+	return [string stringByRemovingPercentEncoding];
+//	return CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
+//																								 (CFStringRef)string,
+//																								 CFSTR(""),
+//																								 kCFStringEncodingUTF8));
 }
 
 //

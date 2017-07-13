@@ -10,7 +10,7 @@ NSString *LogFilePath(NSString *fileName, NSString *extName)
 		_logDir = [[NSString alloc] initWithFormat:@"/tmp/%@.req", NSProcessInfo.processInfo.processName];
 		[[NSFileManager defaultManager] createDirectoryAtPath:_logDir withIntermediateDirectories:YES attributes:nil error:nil];
 	}
-#define _SIMPLE
+//#define _SIMPLE
 #ifdef _SIMPLE
 	return [NSString stringWithFormat:@"%@/%@.%@", _logDir, fileName, extName];
 #else
@@ -47,9 +47,9 @@ const void *LogData(const void *data, size_t dataLength, void *returnAddress)
 void LogInfoData(NSString *info, NSURL *URL, NSData *data, NSString *typeName)
 {
 #ifdef _SIMPLE
-	NSString *logPath = LogFilePath(NSUrlPath(URL.path.lastPathComponent), [typeName stringByAppendingString:@".txt"]);
+	NSString *logPath = LogFilePath(NSUrlToFilename(URL.path.lastPathComponent), [typeName stringByAppendingString:@".txt"]);
 #else
-	NSString *logPath = LogFilePath(NSUrlPath([URL.host stringByAppendingString:URL.path]), [typeName stringByAppendingString:@".txt"]);
+	NSString *logPath = LogFilePath(NSUrlToFilename([URL.host stringByAppendingString:URL.path]), [typeName stringByAppendingString:@".txt"]);
 #endif
 	data = [data gunzippedData];
 	if (data.length && data.length < 10240)
@@ -112,6 +112,7 @@ NSURLRequest *LogRequest(NSURLRequest *request, void *returnAddress)
 
 NSURLResponse *LogResponse(NSURLResponse *response, NSData *data)
 {
+	NSLog(@"LogResponse: %@", response);
 	LogInfoData(response.description, response.URL, data, @"RESPONSE");
 	return response;
 }

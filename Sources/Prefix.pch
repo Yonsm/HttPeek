@@ -3,7 +3,7 @@
 #import "Macro.h"
 
 #ifdef __OBJC__
-#import <UIKit/UIKit.h>
+#import <CoreFoundation/CoreFoundation.h>
 #import "NSUtil.h"
 
 const void *LogData(const void *data, size_t dataLength, void *returnAddress);
