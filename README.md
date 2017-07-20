@@ -2,9 +2,11 @@
 HttPeek
 ======
 
-iOS/macOS HTTP(S)/SSL Peeker
+iOS/macOS HTTP(S)/SSL Network Traffic Peeker
 
 #Introduce
+
+Worked for NSURLConnection/NSURLSession/SSLRead/SSLWrite network traffic.
 
 <http://yonsm.net/httpeek/>
 
