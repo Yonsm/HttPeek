@@ -228,6 +228,7 @@
 				TargetAttributes = {
 					24C3DBE31F1786D500EC9A8C = {
 						DevelopmentTeam = 97Y98KA82X;
+						ProvisioningStyle = Automatic;
 					};
 					24CADA8C1510492B00B22162 = {
 						DevelopmentTeam = 97Y98KA82X;
@@ -315,8 +316,8 @@
 		24C3DBF51F1786D500EC9A8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 97Y98KA82X;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.HttPeek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -328,8 +329,8 @@
 		24C3DBF61F1786D500EC9A8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 97Y98KA82X;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.HttPeek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -396,8 +397,6 @@
 		24CADA9B1510492B00B22162 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 97Y98KA82X;
 				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.HttPeek;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -406,8 +405,6 @@
 		24CADA9C1510492B00B22162 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 97Y98KA82X;
 				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.HttPeek;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

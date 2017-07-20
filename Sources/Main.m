@@ -7,8 +7,29 @@ NSString *LogFilePath(NSString *fileName, NSString *extName)
 	static NSString *_logDir = nil;
 	if (_logDir == nil)
 	{
-		_logDir = [[NSString alloc] initWithFormat:@"/tmp/%@.req", NSProcessInfo.processInfo.processName];
-		[[NSFileManager defaultManager] createDirectoryAtPath:_logDir withIntermediateDirectories:YES attributes:nil error:nil];
+		
+		for (int i = 0; /*i < 3*/; i++)
+		{
+			NSString *temp;
+			switch (i)
+			{
+				default: temp = @"/tmp"; break;
+				case 1: temp = NSDocumentPath(); break;
+				case 2: temp = NSTemporaryDirectory(); break;
+			}
+			_logDir = [[NSString alloc] initWithFormat:@"%@/%@.req", temp, NSProcessInfo.processInfo.processName];
+			BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:_logDir withIntermediateDirectories:YES attributes:nil error:nil];
+			if (ret)
+			{
+				NSLog(@"HTTPEEK LOG to dir: %@", temp);
+				break;
+			}
+			else if (i == 2)
+			{
+				NSLog(@"HTTPEEK ERROR!!! Could not create log dir: %@", temp);
+				break;
+			}
+		}
 	}
 //#define _SIMPLE
 #ifdef _SIMPLE
