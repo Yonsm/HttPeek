@@ -4,21 +4,21 @@ HttPeek
 
 iOS/macOS HTTP(S)/SSL Network Traffic Peeker
 
-#Introduce
+# Introduce
 
 Worked for NSURLConnection/NSURLSession/SSLRead/SSLWrite network traffic.
 
 <http://yonsm.net/httpeek/>
 
-#Download
+# Download
 
 <https://github.com/Yonsm/HttPeek/raw/master/Release/HttPeek.dylib>
 
-#History
+# History
 
 TBD...
 
-#How to track AppStore's traffic?
+# How to track AppStore's traffic?
 
 1. Install OpenSSH from Cydia;
 2. Install adv-cmds from Cydia;
@@ -28,7 +28,7 @@ TBD...
 Now itunesstored will restart automatically with injection of HttPeek.dylib.
 
 
-#How to peek HTTP(S) on macOS
+# How to peek HTTP(S) on macOS
 
 1. Download <https://github.com/Yonsm/HttPeek/raw/master/Release/HttPeex.dylib> to a folder (e.g. /Applications/HttPeex.dylib);
 2. Launch your process with HttPeex.dylib inserted:
