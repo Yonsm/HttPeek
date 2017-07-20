@@ -29,7 +29,7 @@ Worked for NSURLConnection/NSURLSession/SSLRead/SSLWrite network traffic.
 1. Download <https://github.com/Yonsm/HttPeek/raw/master/Release/HttPeex.dylib> to a folder (e.g. /Applications/HttPeex.dylib);
 2. Launch your process with HttPeex.dylib inserted:
 
-	DYLD_PRINT_LIBRARIES=1 X=1 DYLD_INSERT_LIBRARIES=/Applications/HttPeex.dylib /Applications/QQ.app/Contents/MacOS/QQ
+	`DYLD_PRINT_LIBRARIES=1 X=1 DYLD_INSERT_LIBRARIES=/Applications/HttPeex.dylib /Applications/QQ.app/Contents/MacOS/QQ`
 
   But it could not work for "library validated process" (e.g. System Apps).
 
@@ -40,8 +40,10 @@ Worked for NSURLConnection/NSURLSession/SSLRead/SSLWrite network traffic.
 2. Run -> Info -> Executable: Ask on Launch;
 3. Run -> Info -> Arguments -> Environment Variables:
 
-	DYLD_PRINT_LIBRARIES=1
+`	DYLD_PRINT_LIBRARIES=1
+	
 	X=1
-	DYLD_INSERT_LIBRARIES=$CODESIGNING_FOLDER_PATH
+
+	DYLD_INSERT_LIBRARIES=$CODESIGNING_FOLDER_PATH`
 
  4. Just Run & Debug, select any application you want to peek.
