@@ -9,7 +9,7 @@ HOOK_MESSAGE(id, NSURLConnection, initWithRequest_delegate_, NSURLRequest *reque
 }
 
 //
-HOOK_MESSAGE(NSURLConnection *, NSURLConnection, connectionWithRequest_delegate_, NSURLRequest *request, id delegate)
+HOOK_META(NSURLConnection *, NSURLConnection, connectionWithRequest_delegate_, NSURLRequest *request, id delegate)
 {
 	_LogRequest(request);
 	NSURLConnection *ret = _NSURLConnection_connectionWithRequest_delegate_(self, sel, request, delegate);
@@ -17,7 +17,7 @@ HOOK_MESSAGE(NSURLConnection *, NSURLConnection, connectionWithRequest_delegate_
 }
 
 //
-HOOK_MESSAGE(NSData *, NSURLConnection, sendSynchronousRequest_returningResponse_error_, NSURLRequest *request, NSURLResponse **reponse, NSError **error)
+HOOK_META(NSData *, NSURLConnection, sendSynchronousRequest_returningResponse_error_, NSURLRequest *request, NSURLResponse **reponse, NSError **error)
 {
 	_LogRequest(request);
 	NSData *data = _NSURLConnection_sendSynchronousRequest_returningResponse_error_(self, sel, request, reponse, error);
